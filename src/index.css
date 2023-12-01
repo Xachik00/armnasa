@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.programs{
+    /* height: 300vh;   */
+    background-repeat:repeat-y;
+    background-size:100%;
+    /* background-position: center; */
+}
