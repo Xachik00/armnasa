@@ -2,7 +2,6 @@ import React from 'react'
 import './slide.css'
 const Slide = () => {
     const images = [
-  
         "./Images/partner1.webp",
         "./Images/partner2.webp",
         "./Images/partner3.webp",
@@ -10,9 +9,7 @@ const Slide = () => {
         "./Images/partner5.webp",
         "./Images/partner6.webp",
         "./Images/partner7.webp",
-     
-      
-      ];
+    ];
   return (
     <div className="container mx-auto bg-slate-400 pl-9  pr-9 mt-9"> 
     <div className=" flex items-center justify-center"> 
