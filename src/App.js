@@ -7,6 +7,7 @@ import Programs from "./pages/Programs";
 import Contact2 from "./components/contact2/Contact2";
 import About from "./pages/About/About";
 import ContactUs from "./pages/Contact/ContactUs";
+import MyChatComponent from "./components/Chat/Chat";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
         <Route path="/amadee" element={<Amadee24 />} />
         <Route path="/contact2" element={<Contact2 />} />
         <Route path="/contact" element={<ContactUs />} />
+        {/* <Route path="/chat" element={}/> */}
       </Routes>
+      <MyChatComponent/>
       <Footer />
     </div>
   );

@@ -1,36 +1,39 @@
 import React from 'react'
 
 const ContactUs = () => {
+  document.title='Contact | Armenian Nasa'
+
   return (
-    <div className="w-full min-h-[80vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif4.gif')` }}>
+    <div className="w-full min-h-[80vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
       <div className=' w-[1600px]'>
 
-        <div class=" text-gray-100 px-8 py-12"  >
-          <div class="text-center w-full ">
-
-            <img class="w-[20%]  mx-auto" src="./Images/logo.webp" alt="" />
-          </div>
+        <div className=" text-gray-100 px-2 py-12"  >
           <div
-            class="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
-            <div class="flex flex-col justify-between">
+            className="max-w-screen-xl mt-10 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+          <div className=" w-full col-span-2 ">
+
+<img className="  mx-auto" src="./Images/logo.webp" alt="" />
+</div>
+            <div className="flex flex-col justify-between">
               <div>
 
-                <h2 class="text-4xl lg:text-5xl font-bold leading-tight">   Armenian AeroSpace Agency</h2>
-                <div class="text-gray-700 mt-8 flex flex-col">
+                <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-blue-500">   Armenian AeroSpace Agency</h2>
+                <p className=' text-2xl mt-2'>Better yet, see us in person!</p>
+                <div className="text-gray-700 mt-8 flex flex-col">
                   <p> 15 A.Mikoyan str, Yerevan, Armenia </p>
-                  <a rel="" role="link" aria-haspopup="false" data-ux="Link" data-aid="CONTACT_INFO_EMAIL_REND" href="mailto:info@armenianasa.org" data-typography="LinkAlpha" class="x-el x-el-a c1-1j c1-1k c1-1l c1-1m c1-1a c1-1n c1-1o c1-b c1-1v c1-c c1-1w c1-1x c1-1y c1-d c1-e c1-f c1-g" data-tccl="ux2.CONTACT.contact7.Content.Default.Link.Default.30534.click,click">info@armenianasa.org</a>
+                  <a rel="" role="link" aria-haspopup="false" data-ux="Link" data-aid="CONTACT_INFO_EMAIL_REND" href="mailto:info@armenianasa.org" data-typography="LinkAlpha" className="x-el x-el-a c1-1j c1-1k c1-1l c1-1m c1-1a c1-1n c1-1o c1-b c1-1v c1-c c1-1w c1-1x c1-1y c1-d c1-e c1-f c1-g" data-tccl="ux2.CONTACT.contact7.Content.Default.Link.Default.30534.click,click">info@armenianasa.org</a>
                 </div>
               </div>
-              <div class="mt-8 text-center">
-                <svg class="w-full"
+              <div className="mt-8 text-center">
+                <svg className="w-full"
                   id="ae37f038-3a9e-4b82-ad68-fc94ba16af2a" data-name="Layer 1"
                   viewBox="0 0 1096 574.74">
                   <defs>
                     <linearGradient id="eb6c86d6-45fa-49e0-9a60-1b0612516196" x1="819.07" y1="732.58" x2="819.07"
                       y2="560.46" gradientUnits="userSpaceOnUse">
-                      <stop offset="0" stop-color="gray" stop-opacity="0.25" />
-                      <stop offset="0.54" stop-color="gray" stop-opacity="0.12" />
-                      <stop offset="1" stop-color="gray" stop-opacity="0.1" />
+                      <stop offset="0" stopColor="gray" stopOpacity="0.25" />
+                      <stop offset="0.54" stopColor="gray" stopOpacity="0.12" />
+                      <stop offset="1" stopColor="gray" stopOpacity="0.1" />
                     </linearGradient>
                     <pattern id="ad310e25-2b04-44c8-bb7b-982389166780" data-name="New Pattern 3" width="36.88"
                       height="49.48" patternUnits="userSpaceOnUse" viewBox="0 0 36.88 49.48">
@@ -205,8 +208,8 @@ const ContactUs = () => {
                     transform="translate(-52 -162.63)" fill="#667eea" opacity="0.1" />
                   <path
                     d="M716.31,652.89c2.61-4.84-.35-10.76-3.75-15.07s-7.56-8.8-7.47-14.29c.13-7.89,8.51-12.56,15.2-16.74a74.3,74.3,0,0,0,13.65-11,20.13,20.13,0,0,0,4.19-5.62c1.39-3.08,1.35-6.6,1.26-10q-.43-16.89-1.67-33.76"
-                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" stroke-miterlimit="10"
-                    stroke-width="4" />
+                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" strokeMiterlimit="10"
+                    strokeWidth="4" />
                   <path d="M750.45,545.85a12.31,12.31,0,0,0-6.15-10.09l-2.76,5.45.09-6.6a12.31,12.31,0,1,0,8.82,11.24Z"
                     transform="translate(-52 -162.63)" fill="#667eea" />
                   <path
@@ -230,8 +233,8 @@ const ContactUs = () => {
                     transform="translate(-52 -162.63)" opacity="0.1" />
                   <path
                     d="M106.31,580.89c2.61-4.84-.35-10.76-3.75-15.07S95,557,95.09,551.53c.13-7.89,8.51-12.56,15.2-16.74a74.3,74.3,0,0,0,13.65-11,20.13,20.13,0,0,0,4.19-5.62c1.39-3.08,1.35-6.6,1.26-10q-.44-16.89-1.67-33.76"
-                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" stroke-miterlimit="10"
-                    stroke-width="4" />
+                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" strokeMiterlimit="10"
+                    strokeWidth="4" />
                   <path d="M140.45,473.85a12.31,12.31,0,0,0-6.15-10.09l-2.76,5.45.09-6.6a12.31,12.31,0,1,0,8.82,11.24Z"
                     transform="translate(-52 -162.63)" fill="#667eea" />
                   <path
@@ -255,8 +258,8 @@ const ContactUs = () => {
                     transform="translate(-52 -162.63)" opacity="0.1" />
                   <path
                     d="M512.52,498.52c-2.61-4.83.35-10.75,3.76-15.06s7.55-8.8,7.46-14.29c-.12-7.9-8.5-12.56-15.2-16.74a74,74,0,0,1-13.64-11,19.78,19.78,0,0,1-4.2-5.61c-1.38-3.09-1.34-6.6-1.26-10q.45-16.89,1.67-33.76"
-                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" stroke-miterlimit="10"
-                    stroke-width="4" />
+                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" strokeMiterlimit="10"
+                    strokeWidth="4" />
                   <path
                     d="M478.39,391.49a12.3,12.3,0,0,1,6.14-10.09l2.76,5.45-.08-6.6a12.62,12.62,0,0,1,4.05-.49,12.31,12.31,0,1,1-12.87,11.73Z"
                     transform="translate(-52 -162.63)" fill="#667eea" />
@@ -380,7 +383,7 @@ const ContactUs = () => {
                     d="M828.42,601.61a3,3,0,0,0,1.29,1.95,17.31,17.31,0,0,1,2.29,2.32,16.43,16.43,0,0,1,2.27,4.55,55.75,55.75,0,0,1,1.89,6.22c-5,2.32-10.68,2.21-16,3.74a12.77,12.77,0,0,0-6,3.55,8.27,8.27,0,0,0-2.21,6.51.85.85,0,0,0,.12.39.84.84,0,0,0,.7.28,6,6,0,0,0,3.67-1.26,17.46,17.46,0,0,0,2.81-2.76,4.52,4.52,0,0,1,2-1.48c2.89-.88,6-.83,9-.88a113.42,113.42,0,0,0,13.41-1.06,1.08,1.08,0,0,0,1.2-1.2c.44-5.9-1.75-11.66-4-17.13q-1.35-3.29-2.78-6.55a19.4,19.4,0,0,0-3.4-5.82,6,6,0,0,0-2-1.48A8.46,8.46,0,0,0,830,591a19,19,0,0,0-4.39-.08,9.36,9.36,0,0,0-.42,2.27c.08,2.7,1.26,5.23,2.42,7.67C827.76,601.23,828.19,601.25,828.42,601.61Z"
                     transform="translate(-52 -162.63)" fill="#be6f72" />
                   <path d="M812.41,606.67a7.33,7.33,0,0,0-1,3.82,5.14,5.14,0,0,0,.25,1.56,5.06,5.06,0,0,0,3.19,3"
-                    transform="translate(-52 -162.63)" fill="none" stroke="#000" stroke-miterlimit="10" opacity="0.1" />
+                    transform="translate(-52 -162.63)" fill="none" stroke="#000" strokeMiterlimit="10" opacity="0.1" />
                   <path
                     d="M817.5,573.82a4.59,4.59,0,0,0-1.45.23c-1.31-2-4.39-3.38-8-3.38-4.78,0-8.65,2.47-8.65,5.51s3.87,5.5,8.65,5.5a12.17,12.17,0,0,0,5.19-1.1,4.71,4.71,0,1,0,4.24-6.76Z"
                     transform="translate(-52 -162.63)" fill="#3f3d56" />
@@ -392,8 +395,8 @@ const ContactUs = () => {
                     transform="translate(-52 -162.63)" opacity="0.1" />
                   <path
                     d="M888.39,577c2.61-4.83-.35-10.76-3.76-15.07s-7.55-8.79-7.46-14.29c.12-7.89,8.5-12.55,15.2-16.74a73.9,73.9,0,0,0,13.64-11,19.93,19.93,0,0,0,4.2-5.61c1.38-3.09,1.34-6.6,1.26-10q-.44-16.9-1.67-33.76"
-                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" stroke-miterlimit="10"
-                    stroke-width="4" />
+                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" strokeMiterlimit="10"
+                    strokeWidth="4" />
                   <path
                     d="M922.52,469.93a12.29,12.29,0,0,0-6.14-10.08l-2.76,5.45.08-6.6a12.08,12.08,0,0,0-4.05-.49,12.31,12.31,0,1,0,12.87,11.72Z"
                     transform="translate(-52 -162.63)" fill="#667eea" />
@@ -419,8 +422,8 @@ const ContactUs = () => {
                     transform="translate(-52 -162.63)" opacity="0.1" />
                   <path
                     d="M1047.39,729c2.61-4.83-.35-10.76-3.76-15.07s-7.55-8.79-7.46-14.29c.12-7.89,8.5-12.55,15.2-16.74a73.9,73.9,0,0,0,13.64-11,19.93,19.93,0,0,0,4.2-5.61c1.38-3.09,1.34-6.6,1.26-10q-.43-16.9-1.67-33.76"
-                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" stroke-miterlimit="10"
-                    stroke-width="4" />
+                    transform="translate(-52 -162.63)" fill="none" stroke="#3f3d56" strokeMiterlimit="10"
+                    strokeWidth="4" />
                   <path
                     d="M1081.52,621.93a12.29,12.29,0,0,0-6.14-10.08l-2.76,5.45.08-6.6a12.08,12.08,0,0,0-4-.49,12.31,12.31,0,1,0,12.87,11.72Z"
                     transform="translate(-52 -162.63)" fill="#667eea" />
@@ -519,25 +522,25 @@ const ContactUs = () => {
                 </svg>
               </div>
             </div>
-            <div class="">
+            <div className="">
               <div>
-                <span class="uppercase text-sm text-gray-600 font-bold">Full Name</span>
-                <input class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                <span className="uppercase text-sm text-gray-600 font-bold">Full Name</span>
+                <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                   type="text" placeholder="" />
               </div>
-              <div class="mt-8">
-                <span class="uppercase text-sm text-gray-600 font-bold">Email</span>
-                <input class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+              <div className="mt-8">
+                <span className="uppercase text-sm text-gray-600 font-bold">Email</span>
+                <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                   type="text" />
               </div>
-              <div class="mt-8">
-                <span class="uppercase text-sm text-gray-600 font-bold">Message</span>
+              <div className="mt-8">
+                <span className="uppercase text-sm text-gray-600 font-bold">Message</span>
                 <textarea
-                  class="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline resize-none"></textarea>
+                  className="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline resize-none"></textarea>
               </div>
-              <div class="mt-8">
+              <div className="mt-8">
                 <button
-                  class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+                  className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
                   Send Message
                 </button>
               </div>

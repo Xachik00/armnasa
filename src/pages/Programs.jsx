@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Slide from '../components/partnerSlide/Slide'
 
 const Programs = () => {
-    document.title='Armenian Nasa | Programs'
+    document.title='Programs | Armenian Nasa'
     const progresArray = [
         {
             id: 1,
@@ -41,7 +41,7 @@ const Programs = () => {
     }, [progresArray])
     return (
         <div className=' min-h-[80vh] flex justify-center bg-repeat-y bg-[length:100%_auto]' style={{ backgroundImage: `url('/Images/gif3.gif')` }}>
-            <div className=' w-[1600px] text-white  bg-[#4949598b]'>
+            <div className=' w-[1600px] text-white  bg-[#4949598b] p-4'>
                 <h1 className=' text-[55px] text-blue-500 mt-5 felx text-center'>AASA Programs</h1>
                 <div className=' grid grid-cols-2  justify-center  gap-[110px] p-5'>
                     {
