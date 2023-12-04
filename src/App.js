@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Home from "./pages/Home";
+import MyChatComponent from "./components/Chat/Chat";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/programs" element={<>programs</>} />
         <Route path="/amadee" element={<>amadee</>} />
         <Route path="/contact" element={<>contact</>} />
+        <Route path="/chat" element={<MyChatComponent/>}/>
       </Routes>
     <Footer/>
     </div>
