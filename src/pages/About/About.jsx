@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Slide from "../../components/partnerSlide/Slide";
 const About = () => {
+  document.title='About | Armenian Nasa'
+
   const arr = [
     {
       picture: "./Images/logo.webp",
-      text: "Armenian AeroSpace Agency (AASA) is a CJSC, which is the main connecting link of the state's AeroSpace scientific, engineering, technological, educational, manufacturing ambitions/requirements in the Armenian environment of state and between private companies, research/educational institutions, educational complexes and academic institutions and individuals working/creating in the field. AASA performs the coordination, concentration, efficient use, as well as commercialization of the Armenian scientific potential.",
-      title: "About AASA ",
+      title: "Armenian AeroSpace Agency (AASA) is a CJSC, which is the main connecting link of the state's AeroSpace scientific, engineering, technological, educational, manufacturing ambitions/requirements in the Armenian environment of state and between private companies, research/educational institutions, educational complexes and academic institutions and individuals working/creating in the field. AASA performs the coordination, concentration, efficient use, as well as commercialization of the Armenian scientific potential.",
+      text: "",
     },
     {
       title: "AASA: Building blocks for the aerospace industry",
@@ -23,44 +25,40 @@ const About = () => {
       picture: "./Images/three.webp",
     },
   ];
-
+  const [indexArray, setIndexArray] = useState([0])
+  useEffect(() => {
+    if (indexArray.length === 1) {
+        arr?.map((el, index) => {
+            if (indexArray[indexArray.length - 1] + 3 === index) {
+                setIndexArray([...indexArray, index])
+            };
+        })
+    }
+}, [arr])
 
 
  
   return (
     <div
-      className=" w-full min-h-[80vh] bg-re  py-9 flex flex-col justify-center items-center text-red-200"
-      style={{ background: `url('/Images/gif1.gif')`,backgroundSize:"cover" }}
+      className=" w-full min-h-[80vh]  flex flex-col justify-center items-center text-white "
+      style={{ backgroundImage: `url('/Images/gif3.gif')` }}
     >
-      <div className="max-w-[1200px] p-4 mx-auto">
-        <div className="flex w-[100%] flex-col items-center">
-          <h2 className=" text-blue-500 text-[48px] ">{arr[0].title}</h2>
-          <img className="w-[60%] my-5" src={arr[0].picture} alt="" />
-          <p className=" text-blue-800 text-[20px]">{arr[0].text}</p>
-        </div>
-        <div className=" flex justify-center  md:justify-between flex-wrap">
-          <div className=" min-w-[360px] md:w-[45%]">
-            <img className="w-[100%] my-5" src={arr[1].picture} alt="" />
+      <div className="max-w-[1600px] bg-[#4949598b] p-4 mx-auto">
+          <h1 className=' text-[35px] sm:text-[55px] text-blue-500 mt-5 felx text-center'>About AASA </h1>
 
-            <h2 className=" text-red-200  text-[25px] ">{arr[1].title}</h2>
-            <p className=" text-blue-800 text-[20px]">{arr[1].text}</p>
-          </div>
-          <div className=" min-w-[360px]  md:w-[45%]">
-            <img className="w-[100%] my-5" src={arr[2].picture} alt="" />
-
-            <h2 className=" text-red-200  text-[25px] ">{arr[2].title}</h2>
-            <p className=" text-blue-800 text-[20px]">{arr[2].text}</p>
-          </div>
-        </div>
-        <div>
-          <img className="w-[100%] my-5" src={arr[3].picture} alt="" />
-
-          <h2 className=" text-red-200  text-[25px] ">{arr[3].title}</h2>
-          <p className=" text-blue-800 text-[20px]">{arr[3].text}</p>
-        </div>
+          <div className=' grid grid-cols-2  justify-center  gap-10 sm:gap-[110px] p-5'>
+                    {
+                        indexArray.length>1&&arr?.map((el, index) =>  <div key={index} className={`${indexArray.includes(index) ? "col-span-2" : "sm:col-span-1 col-span-2"} flex flex-col gap-2 sm:gap-5  justify-start  `}>
+                                <img src={el?.picture} alt="" className=' rounded-[12px]'  />
+                                <h2 className=' text-[20px] sm:text-[24px]'>{el?.title}</h2>
+                                <p className=' text-4 sm:text-[18px]'>{el?.text}</p>
+                            </div>
+                        )
+                    }
+                </div>
+<Slide/>
       </div>
     
-<Slide/>
 
 
 </div>

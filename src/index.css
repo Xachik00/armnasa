@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+    /* height: 300vh;   */
+    background-repeat:repeat-y;
+    background-size:100%;
+    background-position: center;
+}
+.button, [type='button'], [type='reset'], [type='submit']{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rcw-launcher ,.rcw-badge,.rcw-header{
+    background-color: #113ecf !important;
+}
+.rcw-messages-container{
+    overflow-y: auto !important;
+}
+.rcw-messages-container::-webkit-scrollbar-track{
+    background-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: black;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #113ecf;
+    border-radius: 25px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0b41f2;
+  }
+
+  

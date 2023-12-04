@@ -11,10 +11,10 @@ const Slide = () => {
         "./Images/partner7.webp",
     ];
   return (
-    <div className="container mx-auto bg-slate-400 pl-9  pr-9 mt-9"> 
-    <div className=" flex items-center justify-center"> 
-      <div className="w-[200%] h-40  overflow-hidden relative"> 
-        <div className="w-[200%] flex items-center h-40 justify-around absolute left-0 gap-20 animate"> 
+    <div className="container mx-auto bg-[#83839662] sm:pl-9  sm:pr-9  sm:mt-9"> 
+    <div className=" flex items-center justify-center w-[100%]"> 
+      <div className="w-[200%] sm:h-40 h-20  overflow-hidden relative"> 
+        <div className="w-[200%] flex items-center sm:h-40 h-20 justify-around absolute left-0 sm:gap-20 gap-2 animate"> 
           {images.map((i,index) => { 
             return ( 
               <div key={index} className="flex justify-center  items-start w-[20rem]"> 
