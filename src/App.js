@@ -4,6 +4,7 @@ import Footer from './components/footer/Footer'
 import Home from "./pages/Home";
 import Amadee24 from "./pages/Amadee24";
 import Programs from "./pages/Programs";
+import Contact2 from "./components/contact2/Contact2";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/programs" element={<Programs/>} />
         <Route path="/amadee" element={<Amadee24/>} />
         <Route path="/contact" element={<>contact</>} />
+        <Route path="/contact2" element={<Contact2/>} />
       </Routes>
     <Footer/>
     </div>

@@ -14,7 +14,7 @@ const Header = () => {
     }
   }
   return (
-    <div className={` ${scrollHeader?"fixed h-[80px]":""} w-full  bg-black h-[120px] flex justify-center items-center border-b-[.5px] border-blue-500`}>
+    <div className={` ${scrollHeader?"fixed z-50 h-[80px]":""} w-full  bg-black h-[120px] flex justify-center items-center border-b-[.5px] border-blue-500`}>
       <div className=' w-[1600px] bg-black h-[50px] flex text-white justify-between items-center'>
         <div>
           <a href='/'><img src="./Images/logo.webp" alt="" className={`${scrollHeader?"w-[80px]":" w-[120px]"}`} /></a>
