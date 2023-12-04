@@ -6,11 +6,11 @@ const Contact2 = () => {
     <div className=' w-full relative flex justify-center' style={{backgroundImage:`url('./Images/gif4.gif')`}}>
          <div className=' w-[1600px]'>
          <section>
-        <div class="container">
-            <div class="contactInfo">
+        <div className="container contact2 ">
+            <div className="contactInfo">
                 <div>
                     <h2>Contact Info</h2>
-                    <ul class="info">
+                    <ul className="info">
                         <li>
                             <span><img src="https://i.ibb.co/cbnfrDF/location.png" /></span>
                             <span>
@@ -28,7 +28,7 @@ const Contact2 = () => {
                         </li> */}
                     </ul>
                 </div>
-                <ul class="sci">
+                <ul className="sci">
                     <li><a href=""><img src="https://i.ibb.co/vxjnyw0/1.png"/></a></li>
                     <li><a href=""><img src="https://i.ibb.co/xsXK3zW/2.png"/></a></li>
                     <li><a href=""><img src="https://i.ibb.co/5jFR49X/3.png"/></a></li>
@@ -37,30 +37,30 @@ const Contact2 = () => {
                 </ul>
 
             </div>
-            <div class="contactForm">
+            <div className="contactForm">
                 <h2>Send a Message</h2>
-                <div class="formBox">
-                    <div class="inputBox w50">
+                <div className="formBox">
+                    <div className="inputBox w50">
                         <input type="text" required />
                         <span>Name</span>
                     </div>
-                    {/* <div class="inputBox w50">
+                    {/* <div className="inputBox w50">
                         <input type="text" required />
                         <span>Last Name</span>
                     </div> */}
-                    <div class="inputBox w50">
+                    <div className="inputBox w50">
                         <input type="email" required />
                         <span>Email Address</span>
                     </div>
-                    {/* <div class="inputBox w50">
+                    {/* <div className="inputBox w50">
                         <input type="text" required />
                         <span>Mobile Number</span>
                     </div> */}
-                    <div class="inputBox w100">
+                    <div className="inputBox w100">
                         <textarea required></textarea>
                         <span>Write Your Massage Here...</span>
                     </div>
-                    <div class="inputBox w100">
+                    <div className="inputBox w100">
                         <input type="submit" value="Send" />
                     </div>
                 </div>

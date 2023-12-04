@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import LargeImg from '../components/LargeImg'
+import Slide from '../components/partnerSlide/Slide'
 
 const Amadee24 = () => {
     let x = '<b >AMADEE-24</b> is a Mars analog simulation in <b>Armenia</b>, managed by the <b>Austrian Space Forum</b> hosted by the <b>Armenia AeroSpace Agency</b> . The expedition will be carried out in a Martian terrestrial analogand directed by a dedicated Mission Support Center in Austria. A  small field crew of highly trained analog astronauts with spacesuit simulators will conduct experiments preparing for future human and robotic Mars exploration missions.'
@@ -29,6 +30,7 @@ const Amadee24 = () => {
                     }
                 </div>
                 <div></div>
+            <Slide/>
             </div>
             {
                 largeImg !== -1 && <LargeImg Img={largeImg} setLargeImg={setLargeImg} imgArr={imgArr} />

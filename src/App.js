@@ -5,21 +5,22 @@ import Home from "./pages/Home";
 import Amadee24 from "./pages/Amadee24";
 import Programs from "./pages/Programs";
 import Contact2 from "./components/contact2/Contact2";
+import About from "./pages/About/About";
+import ContactUs from "./pages/Contact/ContactUs";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<>about</>} />
-        <Route path="/programs" element={<Programs/>} />
-        <Route path="/amadee" element={<Amadee24/>} />
-        <Route path="/contact" element={<>contact</>} />
-        <Route path="/contact2" element={<Contact2/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/programs" element={<Programs />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/amadee" element={<Amadee24 />} />
+        <Route path="/contact2" element={<Contact2 />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
-    <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Slide from '../components/partnerSlide/Slide'
 
 const Programs = () => {
     document.title='Armenian Nasa | Programs'
@@ -52,6 +53,7 @@ const Programs = () => {
                         )
                     }
                 </div>
+                <Slide/>
             </div>
         </div>
     )
