@@ -12,6 +12,7 @@ const Slide = () => {
     ];
   return (
     <div className="container mx-auto bg-[#83839662] sm:pl-9  sm:pr-9  sm:mt-9"> 
+    <h1 className='text-center text-[28px] ' >Our Partner</h1>
     <div className=" flex items-center justify-center w-[100%]"> 
       <div className="w-[200%] sm:h-40 h-20  overflow-hidden relative"> 
         <div className="w-[200%] flex items-center sm:h-40 h-20 justify-around absolute left-0 sm:gap-20 gap-2 animate"> 

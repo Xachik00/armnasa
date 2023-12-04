@@ -10,3 +10,9 @@
 .animate { 
  animation: scroll 10s linear  infinite ; 
 }
+
+
+.animate:hover{
+  animation-play-state: paused;
+  cursor: pointer;
+}
