@@ -85,15 +85,15 @@ console.log(About);
                   ( index===0 || index%3===0)
                     ? "col-span-2"
                     : "sm:col-span-1 col-span-2"
-                } flex flex-col gap-2 sm:gap-5  justify-start  `}
+                } flex flex-col gap-2 sm:gap-5  justify-start items-center `}
 
               >
                 <img src={el?.picture} alt="" className=" rounded-[12px]" />
                 <h2 className=" text-[20px] sm:text-[24px]">{el?.title}</h2>
                 <p className=" text-4 sm:text-[18px]">{el?.text}</p>
                 {
-                  <div>
-                    <EditOutlined onClick={() => setEdit(el)} />{" "}
+                  <div className="w-[100px] flex justify-between mt-4">
+                    <EditOutlined onClick={() => setEdit(el)} />
                     <DeleteOutlined onClick={() => deleteItem(el.id)} />
                   </div>
                 }

@@ -43,7 +43,7 @@ const Home = () => {
       <div className=" sm:w-[43%] text-center">
         { !edit &&Home?.map((el, index) => {
           return (
-            <div key={index + 1}>
+            <div key={index + 1} className="flex flex-col items-center">
               <h1 className=" text-blue-500 text-[35px] sm:text-[55px]">
                 {Home[0]?.title}
               </h1>
@@ -51,7 +51,7 @@ const Home = () => {
                 {Home[0]?.text}
               </p>
               {
-                  <div>
+                  <div className="w-[100px] flex justify-between mt-4">
                     <EditOutlined onClick={() => setEdit(el)} />
                     <DeleteOutlined onClick={()=> deleteItem(el.id)} />
                   </div>

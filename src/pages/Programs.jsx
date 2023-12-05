@@ -81,13 +81,13 @@ const Programs = () => {
                 key={index}
                 className={`${
                   ( index===0 || index%3===0) ? "col-span-2" : "col-span-1"
-                } flex flex-col gap-5  justify-start  `}
+                } flex flex-col gap-5  justify-start items-center" `}
 >
                 <img src={el.picture} alt="" className=" rounded-[12px]" />
                 <h2 className=" text-[24px]">{el.title}</h2>
                 <p className=" text-[18px]">{el.text}</p>
                 {
-                  <div>
+                  <div className="w-[100px] flex justify-between mt-4">
                     <EditOutlined onClick={() => setEdit(el)} />
                     <DeleteOutlined onClick={() => deleteItem(el.id)} />
                   </div>
