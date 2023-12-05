@@ -7,6 +7,8 @@ import Programs from "./pages/Programs";
 import About from "./pages/About/About";
 import ContactUs from "./pages/Contact/ContactUs";
 import MyChatComponent from "./components/Chat/Chat";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/amadee" element={<Amadee24 />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <MyChatComponent/>
       <Footer />
