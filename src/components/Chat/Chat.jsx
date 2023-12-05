@@ -58,7 +58,6 @@ const MyChatComponent = () => {
   return (
     <div className="max-w-lg mx-auto mt-8 bg-white rounded-lg overflow-hidden shadow-lg">
       <Widget {...widgetConfig} getCustomLauncher = {(handleToggle) => getCustomLauncher(handleToggle)} />
-      
     </div>
   );
 };
