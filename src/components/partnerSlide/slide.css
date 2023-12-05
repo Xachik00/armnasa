@@ -1,0 +1,18 @@
+@keyframes scroll { 
+  0% { 
+    left: 3%; 
+  } 
+  100% { 
+    left: -100%; 
+  } 
+} 
+ 
+.animate { 
+ animation: scroll 10s linear  infinite ; 
+}
+
+
+.animate:hover{
+  animation-play-state: paused;
+  cursor: pointer;
+}
