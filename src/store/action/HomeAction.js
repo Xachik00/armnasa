@@ -62,3 +62,21 @@ export async function uploadImageHandleradd(e,setImg) {
       }
     });
   }
+  export  async function EditHome(obj) {
+    
+    try {
+        console.log(obj);
+      await axios.put(`${URL}agency/${obj?.id}`,obj);
+    } catch (error) {
+        console.error(error )
+    }
+  }
+
+  export  async function deleteHome(id) {
+    
+    try {
+      await axios.delete(`${URL}agency/${id}`);
+    } catch (error) {
+        console.error(error)
+    }
+  }

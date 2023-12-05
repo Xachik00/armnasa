@@ -16,7 +16,6 @@ const Programs = () => {
   },[dispatch])
 
   const [indexArray, setIndexArray] = useState([0]);
-
   const [edit, setEdit] = useState("");
   const [img, setImg] = useState('');
 
@@ -26,28 +25,21 @@ const Programs = () => {
     }
   }, [img]);
 
-  useEffect(() => {
-    if (indexArray.length === 1) {
-        Programs?.map((el, index) => {
-        if (indexArray[indexArray.length - 1] + 3 === index) {
-          setIndexArray([...indexArray, index]);
-        }
-      });
-    }
-  }, [Programs]);
 
-  function   editPrograms() {
-    EditPrograms(edit)
+  async function   editPrograms() {
+   await EditPrograms(edit)
 
     dispatch(getFetchPrograms());
     setEdit('')
   }
   async function deleteItem(id) {
-    DeleteItem({
+  await  DeleteItem({
       title: "Ցանկանում եք ջնջել՞",
       text: "Ջնջելու դեպքում վերականգնել չեք կարող",
       deleteItem: () => deletePrograms(id),
     });
+    dispatch(getFetchPrograms());
+
   }
   return (
     <div
@@ -59,12 +51,12 @@ const Programs = () => {
           AASA Programs
         </h1>
         <div className=" grid grid-cols-2  justify-center  gap-[110px] p-5">
-          {indexArray.length > 1 &&  !edit &&
+          {  !edit &&
             Programs?.map((el, index) => (
               <div
                 key={index}
                 className={`${
-                  indexArray.includes(index) ? "col-span-2" : "col-span-1"
+                  ( index===0 || index%3===0) ? "col-span-2" : "col-span-1"
                 } flex flex-col gap-5  justify-start  `}
               >
                 <img src={el.picture} alt="" className=" rounded-[12px]" />
@@ -99,14 +91,16 @@ const Programs = () => {
           />
               <textarea
                 name="title"
-                className=" text-[20px] sm:text-[18px] w-[60%] m-5 resize-none"
+                rows="2" className="block p-2.5 my-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
+
                 type="text"
                 value={edit?.title}
                 onChange={(e) => setEdit({ ...edit,[e.target.name]:e.target.value })}
               />
               <textarea
                 name="text"
-                className=" text-4 sm:text-[18px]  w-[60%] h-[10rem] resize-none"
+                rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
+
                 value={edit?.text}
                 onChange={(e) => setEdit({ ...edit,[e.target.name]:e.target.value})}
 
