@@ -22,3 +22,21 @@ export const getFetchPrograms = () => {
 
     }
 }
+
+export  async function EditPrograms(obj) {
+    
+    try {
+        console.log(obj);
+      await axios.put(`${URL}programs/${obj?.id}`,obj);
+    } catch (error) {
+        console.error(error )
+    }
+  }
+  export  async function deletePrograms(id) {
+    
+    try {
+      await axios.delete(`${URL}programs/${id}`);
+    } catch (error) {
+        console.error(error)
+    }
+  }

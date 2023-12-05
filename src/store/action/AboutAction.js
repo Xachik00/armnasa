@@ -22,3 +22,22 @@ export const getFetchAbout = () => {
 
     }
 }
+
+export  async function EditAbout(obj) {
+    
+    try {
+        console.log(obj);
+      await axios.put(`${URL}about/${obj?.id}`,obj);
+    } catch (error) {
+        console.error(error )
+    }
+  }
+
+  export  async function deleteAbout(id) {
+    
+    try {
+      await axios.delete(`${URL}about/${id}`);
+    } catch (error) {
+        console.error(error)
+    }
+  }
