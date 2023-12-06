@@ -5,10 +5,18 @@ import About from './About/About'
 import Programs from './Programs'
 import Amadee24 from './Amadee24'
 import ContactUs from './Contact/ContactUs'
+import { useEffect } from 'react'
+import { AddLanguagePage } from '../components/AddLanguagePage/AddLanguagePage'
 
 const Admin = () => {
     const [page,setPage]=useState('')
+    useEffect(()=>{
+        if(page==="Language"){
+            localStorage.setItem('addLang',JSON.stringify(page))
+        }
+    },[page])
     return (
+        
         <div className=' w-full flex justify-center' style={{ background: `url('/Images/gif3.gif')` }}>
             <div className=' flex w-[1600px]  '>
                 <AdminDashboard setPage={setPage}/>
@@ -18,6 +26,7 @@ const Admin = () => {
                     {page==="Programs"&&<Programs/>}
                     {page==="Amadee-24"&&<Amadee24/>}
                     {page==="Contact"&&<ContactUs/>}
+                    {page==="Language"&& <AddLanguagePage/> }
                 </div>
             </div>
         </div>

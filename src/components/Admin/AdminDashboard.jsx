@@ -29,7 +29,7 @@ const AdminDashboard = ({setPage}) => {
             <p className={` flex gap-2 items-center ${active==='Setings'?" text-green-500":""}`}><SettingOutlined />Setings</p>
             {active==='Setings'?< UpOutlined  />:<DownOutlined />}
             </li>
-          <ul className={`${active === 'Setings' ? " block" : "hidden"} pl-10 [&>li]:p-1 [&>li]:border-b-2 [&>li]:border-blue-500 [&>li]:cursor-pointer`}>
+          <ul className={`${active === 'Setings' ? " block" : "hidden"} pl-10 [&>li]:p-1 [&>li]:border-b-2 [&>li]:border-blue-500 [&>li]:cursor-pointer`}  onClick={(e)=>setPage(e.target.innerText)}>
             <li>Login,Password</li>
             <li>Language</li>
           </ul>
