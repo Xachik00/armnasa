@@ -11,13 +11,16 @@ const Admin = () => {
     return (
         <div className=' w-full flex justify-center' style={{ background: `url('/Images/gif3.gif')` }}>
             <div className=' flex w-[1600px]  '>
-                <AdminDashboard setPage={setPage}/>
+                <AdminDashboard page={page} setPage={setPage}/>
                 <div className=' w-[1300px]'>
                     {page==="Home"&&<Home/>}
                     {page==="About"&&<About/>}
                     {page==="Programs"&&<Programs/>}
                     {page==="Amadee-24"&&<Amadee24/>}
                     {page==="Contact"&&<ContactUs/>}
+                    {page==="Header"&&<div>Header</div>}
+                    {page==="Footer"&&<div>Footer</div>}
+                    {page==="Backraund"&&<div>Backraund</div>}
                 </div>
             </div>
         </div>
