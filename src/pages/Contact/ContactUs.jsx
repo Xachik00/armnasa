@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ContactUs = () => {
-  document.title='Contact | Armenian Nasa'
+  document.title = 'Contact | Armenian Nasa'
 
   return (
     <div className="w-full min-h-[80vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
@@ -10,10 +10,10 @@ const ContactUs = () => {
         <div className=" text-gray-100 px-2 py-12"  >
           <div
             className="max-w-screen-xl mt-10 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
-          <div className=" w-full col-span-2 ">
+            <div className=" w-full col-span-2 ">
 
-<img className="  mx-auto" src="./Images/logo.webp" alt="" />
-</div>
+              <img className="  mx-auto" src="./Images/logo.webp" alt="" />
+            </div>
             <div className="flex flex-col justify-between">
               <div>
 
