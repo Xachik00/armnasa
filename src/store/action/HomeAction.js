@@ -1,6 +1,5 @@
 import { fetchHome, fetchErrorHome, fetchingHome } from "../slice/HomeSlice";
 import Swal from "sweetalert2";
-import "@sweetalert2/theme-borderless/borderless.css";
 import axios from "axios";
 
 
