@@ -12,8 +12,9 @@ export function  Upload({name,setImg,id}) {
     return (
 
         <div className="w-auto h-auto" onClick={()=>{console.log(id,'uppp');}} >
-            <label htmlFor={name+id} className=" text-white flex justify-center items-center bg-gray-500 cursor-pointer hover:bg-gray-700">{name}</label>
+            <label htmlFor={name+id} className=" text-white flex justify-center items-center bg-gray-500 cursor-pointer hover:bg-gray-700 p-2">{name}</label>
             <input type="file" accept="image/*" id={name+id} name={name+id} value={""} style={{display:'none'}} onChange={uploadImageHandler} />
         </div>
+
     );
 }

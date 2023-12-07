@@ -31,6 +31,8 @@ const BackraundChange = () => {
     )
     const [id, setId] = useState()
     const [img, setImg] = useState()
+
+
     useEffect(() => {
         console.log(id, 'id');
         if (img) {
@@ -47,11 +49,16 @@ const BackraundChange = () => {
             setImg('')
         }
     }, [img, id])
-    const [colors, setColors] = useState({
+
+    const [colors, setColors] = useState(JSON.parse(localStorage.getItem('color'))||{
         color: '#ffffff',
         backroundBG: '#000',
         border: "#2196F3"
     })
+
+    function saveColor(){
+        localStorage.setItem('color',JSON.stringify(colors))
+    }
 
     return (
         <div >
@@ -86,6 +93,9 @@ const BackraundChange = () => {
                     <span>Border Color</span>
                     <input type="color" value={colors.border} name="" id="" onChange={(e) => { setColors({ ...colors, border: e.target.value }); console.log(e.target.value); }} />
                 </div>
+            </div>
+            <div className=' flex justify-center mt-4 '>
+                <button className=' p-2 bg-green-500 min-w-[150px] rounded-xl text-white' onClick={()=>{saveColor()}}>Save</button>
             </div>
         </div>
     )

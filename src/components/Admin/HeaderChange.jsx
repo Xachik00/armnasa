@@ -21,11 +21,12 @@ const HeaderChange = () => {
         id: 5,
         title: "CONTACT"
     }])
-    const colors={
-        color:'white',
-        backroundBG:'black',
-        border:"blue"
-    }
+    const [colors, setColors] = useState(JSON.parse(localStorage.getItem('color'))||{
+        color: '#ffffff',
+        backroundBG: '#000',
+        border: "#2196F3"
+    })
+
     function changeTitle(e,id){
         let newArray=headarArray?.map((el)=>{
             if(el.id===id){
@@ -36,16 +37,15 @@ const HeaderChange = () => {
         setHeadaerArray(newArray)
         
     }
+    console.log(colors);
     return (
         <div className={`px-5 bg-[${colors.backroundBG}] min-h-20 w-full`}>
             <div className='gap-5 grid grid-cols-4 p-5'>
                 {
-                    headarArray?.map((el)=><div className=' sca'>
-                        {/* <h2>{el.title}</h2> */}
-                        <input type="text" value={el.title} onChange={(e)=>{changeTitle(e.target.value,el.id)}} className={`p-2 bg-[#ff000000] border-b-2 border-[${colors.border}] rounded-xl text-[${colors.color}] `} />
+                    headarArray?.map((el)=><div key={el.id}>
+                        <input type="text" value={el.title} onChange={(e)=>{changeTitle(e.target.value,el.id)}} className={`p-2 bg-[#ff000000] border-b-[1px] border-[${colors?.border}] rounded-xl text-[${colors?.color}] `} />
                     </div>)
                 }
-
             </div>
 
         </div>
