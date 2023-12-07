@@ -58,7 +58,7 @@ const AdminDashboard = ({ page, setPage }) => {
 
           </ul>
           <ul>
-            <li className=' flex justify-between items-center cursor-pointer p-2 bg-white text-black border-b-2 border-blue-500' onClick={() => { }}>
+            <li className=' flex justify-between items-center cursor-pointer p-2  text-black' onClick={() => { }}>
               <p className={` flex gap-2 items-center `}><img src='./Images/logoout.png' className=' w-8 ' />Exit</p>
             </li>
           </ul>

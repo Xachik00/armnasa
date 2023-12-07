@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { AddPrograms, EditPrograms, deletePrograms, getFetchPrograms } from "../store/action/ProgramsAction";
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { DeleteItem, uploadImageHandleradd } from "../store/action/HomeAction";
+import { DeleteItem } from "../store/action/HomeAction";
+import { uploadImageHandleradd } from "../store/action/UploadImage";
 
 
 const Programs = () => {

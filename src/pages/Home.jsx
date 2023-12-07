@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteItem, EditHome, deleteHome, getFetchHome, uploadImageHandleradd } from "../store/action/HomeAction";
+import { DeleteItem, EditHome, deleteHome, getFetchHome } from "../store/action/HomeAction";
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { uploadImageHandleradd } from "../store/action/UploadImage";
 
 const Home = () => {
     

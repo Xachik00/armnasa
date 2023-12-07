@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { AddAmade, DeleteAmade, EditAmade, getFetchAmade } from '../store/action/AmadeAction'
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons'
-import { DeleteItem, uploadImageHandleradd } from '../store/action/HomeAction'
+import { DeleteItem } from '../store/action/HomeAction'
+import { uploadImageHandleradd } from '../store/action/UploadImage'
 
 const Amadee24 = () => {
     document.title = 'Amadee24 | Armenian Nasa '
