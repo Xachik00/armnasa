@@ -27,6 +27,7 @@ export const getFetchHome = () => {
 
 
 
+
   
  export async function DeleteItem({ title, text, deleteItem }) {
     Swal.fire({
