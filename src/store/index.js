@@ -3,7 +3,7 @@ import HomeReducer from './slice/HomeSlice';
 import AboutReducer from './slice/AboutSlice';
 import ProgramsReducer from './slice/ProgramsSlice';
 import AmadeReducer from './slice/AmadeSlice';
-import PartnersReducer from './slice/PartnersSlice';
+import PartnersReducer from './slice/Partners';
 const store = configureStore({
   reducer: {
     About:AboutReducer,

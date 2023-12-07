@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { fetchPartners, fetchErrorPartners, fetchingPartners } from "../slice/PartnersSlice";
+import { fetchPartners, fetchErrorPartners, fetchingPartners } from "../slice/Partners";
 
 
 const URL = process.env.REACT_APP_BASE_URL

@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AddPartner, getFetchPartners } from '../../store/action/PartnersAction';
 import { useEffect } from 'react';
-import { uploadImageHandleradd } from '../../store/action/HomeAction';
 import { CheckOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
+import { uploadImageHandleradd } from '../../store/action/UploadImage';
 const Slide = () => {
     // const images = [
     //     "./Images/partner1.webp",

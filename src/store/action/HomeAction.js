@@ -24,25 +24,8 @@ export const getFetchHome = () => {
     }
 }
 
-export async function uploadImageHandleradd(e,setImg) {
 
-    const formData = new FormData();
-    
-    formData.append("image", e.target.files[0]);
-    if (formData.has("image")) {
-      try {
-        const response = await axios.post(`${URL}admin/addPicture`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
 
-        setImg(response?.data?.dirname) ;
-      } catch (error) {
-        return "Server request is failed";
-      }
-    }
-  }
 
 
   

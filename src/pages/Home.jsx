@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteItem, EditHome, deleteHome, getFetchHome, uploadImageHandleradd } from "../store/action/HomeAction";
+import { DeleteItem, EditHome, deleteHome, getFetchHome } from "../store/action/HomeAction";
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { uploadImageHandleradd } from "../store/action/UploadImage";
 
 const Home = () => {
     
@@ -93,20 +94,20 @@ console.log(Home);
       className={
         lng
           ? "w-[70%] p-2  text-white"
-          : "  w-full min-h-[60vh] sm:min-h-[80vh] flex justify-center items-center"
+          : "  w-full min-h-[90vh] sm:min-h-[90vh] flex justify-center items-center"
       }
       style={{ background: `url(${Home[0]?.picture})` }}
     >
       <div
         className={
-          lng ? "w-[100%] flex justify-between" : " sm:w-[43%] text-center"
+          lng ? "w-[100%] flex justify-between" : "w-[60%] md:w-[43%] text-center"
         }
       >
         {!edit &&
           Home?.map((el, index) => {
             return (
               <div key={index + 1} className="flex flex-col items-center">
-                <h1 className=" text-blue-500 text-[35px] sm:text-[55px]">
+                <h1 className=" text-blue-500 text-[35px] dm:text-[55px]">
                   {Home[0]?.title}
                 </h1>
                 <p className=" text-[20px] sm:text-[30px]  text-white">

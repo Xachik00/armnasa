@@ -9,7 +9,7 @@ const ContactUs = () => {
 
         <div className=" text-gray-100 px-2 py-12"  >
           <div
-            className="  p-2  xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+            className="  p-2  xl:px-28 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
             <div className=" w-full col-span-2 ">
 
               <img className="  mx-auto" src="./Images/logo.webp" alt="" />

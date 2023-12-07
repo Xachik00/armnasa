@@ -1,23 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Slide from "../../components/partnerSlide/Slide";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AddAbout,
-  EditAbout,
-  deleteAbout,
-  getFetchAbout,
-} from "../../store/action/AboutAction";
-import {
-  CheckOutlined,
-  CloseOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-import {
-  DeleteItem,
-  uploadImageHandleradd,
-} from "../../store/action/HomeAction";
+
+import { AddAbout, EditAbout, deleteAbout, getFetchAbout } from "../../store/action/AboutAction";
+import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { DeleteItem } from "../../store/action/HomeAction";
+import { uploadImageHandleradd } from "../../store/action/UploadImage";
 const About = () => {
   document.title = "About | Armenian Nasa";
 
