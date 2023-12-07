@@ -5,10 +5,11 @@ import About from '../../pages/About/About'
 import Programs from '../../pages/Programs'
 import Amadee24 from '../../pages/Amadee24'
 import ReactFlagsSelect from 'react-flags-select'
+import Header from '../header/Header'
 
 export const AddLanguagePage = () => {
 
-    const mypage= ['Agency',"About","Programs",'Amadee-24']
+    const mypage= ['Agency',"About","Programs",'Amadee-24',"Header"]
     const [step,setStep]= useState(0)
     const [countries, setCountries] = useState([]);
     const [countriesValue, setCountriesValue] = useState('');
@@ -58,10 +59,11 @@ export const AddLanguagePage = () => {
        {mypage[step]==="About"&&<About/>}
        {mypage[step]==="Programs"&&<Programs/>}
        {mypage[step]==="Amadee-24"&&<Amadee24/>}
+       {mypage[step]==="Header"&&<Header />}
        <div className=' flex justify-between w-[300px] my-5 text-white'>
        {step>0&& <button className='p-2 w-[100px] rounded-[20px] bg-slate-600' onClick={()=>setStep(step-1)}>Prev</button>}
-       {step!=3&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>setStep(step+1)}>next</button>}
-      {step==3&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>{}}>Save</button>}
+       {step!=4&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>setStep(step+1)}>next</button>}
+      {step==4&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>{}}>Save</button>}
       </div>
     </div>
   )

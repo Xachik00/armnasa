@@ -42,11 +42,12 @@ export async function deletePrograms(id) {
 }
 
 
-export async function AddPrograms(obj) {
-
+export function AddPrograms(obj) {
+return async()=>{
   try {
     await axios.post(`${URL}programs`, obj);
   } catch (error) {
     console.error(error)
   }
+}
 }

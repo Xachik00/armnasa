@@ -87,8 +87,11 @@ const Amadee24 = () => {
 
   function handleLanguageChange() {
     let language = localStorage.getItem("addLang");
-
-    setLng(JSON.parse(language));
+ let item = JSON.parse(language)
+ console.log('====================================');
+ console.log();
+ console.log('====================================');
+    setLng(item);
   }
   useEffect(() => {
     handleLanguageChange1();
@@ -116,21 +119,21 @@ const Amadee24 = () => {
       setLangText(newText);
     }
   }
-  console.log(langText);
+  console.log(lng);
 
   return (
     <div
       className={
         lng
           ? "w-[70%] p-2  text-white"
-          : " w-full min-h-[80vh] flex justify-center"
+          : "  w-full min-h-[60vh] sm:min-h-[90vh] flex justify-center items-center"
       }
       style={{ background: `url('/Images/gif2.gif')` }}
     >
       {!addShow ? (
         <div
           className={
-            lng ? "w-[100%]  bg-[#4949598b]" : "w-[1600px] bg-[#4949598b] p-4 "
+            lng ? "w-[100%]  bg-[#4949598b]" : "max-w-[1600px] bg-[#4949598b] p-4 "
           }
         >
           <div className=" flex gap-5 flex-col text-white   items-center mt-5">

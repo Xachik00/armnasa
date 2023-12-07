@@ -5,7 +5,7 @@ const ContactUs = () => {
 
   return (
     <div className="w-full min-h-[80vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
-      <div className=' w-[1600px]'>
+      <div className='max-w-[1600px]'>
 
         <div className=" text-gray-100 px-2 py-12"  >
           <div

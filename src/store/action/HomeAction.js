@@ -31,7 +31,7 @@ export async function uploadImageHandleradd(e,setImg) {
     formData.append("image", e.target.files[0]);
     if (formData.has("image")) {
       try {
-        const response = await axios.post(`${URL}upload`, formData, {
+        const response = await axios.post(`${URL}admin/addPicture`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

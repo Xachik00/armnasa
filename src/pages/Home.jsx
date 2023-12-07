@@ -87,7 +87,7 @@ async function addlangText(e,index){
 
 }
 
-console.log(langText);
+console.log(Home);
   return (
     <div
       className={

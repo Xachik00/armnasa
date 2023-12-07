@@ -125,7 +125,7 @@ const Programs = () => {
           className={
             lng
               ? "w-[100%]  bg-[#4949598b]"
-              : " w-[1600px] text-white  bg-[#4949598b] p-4"
+              : "max-w-[1600px] text-white  bg-[#4949598b] p-4"
           }
         >
           <h1 className=" text-[55px] text-blue-500 mt-5 felx text-center">

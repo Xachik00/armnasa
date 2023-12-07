@@ -108,7 +108,7 @@ const About = () => {
     }
   }
 
-  console.log(langText);
+  console.log(lng);
   return (
     <div
       className={
