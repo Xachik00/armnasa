@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { sendMail } from '../../store/action/ContactAction';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
   document.title = 'Contact | Armenian Nasa'
@@ -9,17 +10,57 @@ const ContactUs = () => {
     email: "",
     text: "",
   });
+  const [succes, setSucces] = useState("")
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const sendMailMessage = async (e) => {
-    e.prevenetDefault();
+    e?.preventDefault();
     try {
-
-      await dispatch(sendMail(email))
+      await dispatch(sendMail(email, setLoading, setSucces))
     } catch (error) {
       console.error(error)
     }
   }
+  useEffect(() => {
+    if (succes === 'ok') {
+      Swal.fire({
+
+        position: "center",
+        icon: "success",
+        title: "OK",
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        setSucces("")
+      });
+    }
+    if (succes?.response?.status < 200 || succes?.response?.status >= 400) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "ERROR!!!",
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        setSucces("")
+      });
+    }
+  }, [succes, loading, dispatch]);
+
+  useEffect(() => {
+    if(loading){
+      Swal.fire({
+        title: 'Loading...',
+        showConfirmButton: false,
+        allowOutsideClick: false,
+      }).then(() => {
+        setLoading(false)
+      })
+    }
+    
+  }, [loading,])
+
 
   return (
     <div className="w-full min-h-[100vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
@@ -36,11 +77,11 @@ const ContactUs = () => {
               <div className="flex flex-col justify-between max-w-[500px] ">
                 <div>
 
-                  <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-blue-500">   Armenian AeroSpace Agency</h2>
+                  <h2 className="text-4xl lg:text-5xl font- bold leading-tight text-blue-500">   Armenian AeroSpace Agency</h2>
                   <p className=' text-2xl mt-2'>Better yet, see us in person!</p>
                   <div className="text-gray-700 mt-8 flex flex-col">
                     <p> 15 A.Mikoyan str, Yerevan, Armenia </p>
-                    <a role="link" aria-haspopup="false" data-ux="Link" data-aid="CONTACT_INFO_EMAIL_REND" href="mailto:info@armenianasa.org" data-typography="LinkAlpha" className="x-el x-el-a c1-1j c1-1k c1-1l c1-1m c1-1a c1-1n c1-1o c1-b c1-1v c1-c c1-1w c1-1x c1-1y c1-d c1-e c1-f c1-g" data-tccl="ux2.CONTACT.contact7.Content.Default.Link.Default.30534.click,click">info@armenianasa.org</a>
+                    <a aria-haspopup="false" data-ux="Link" data-aid="CONTACT_INFO_EMAIL_REND" href="mailto:info@armenianasa.org" data-typography="LinkAlpha" className="x-el x-el-a c1-1j c1-1k c1-1l c1-1m c1-1a c1-1n c1-1o c1-b c1-1v c1-c c1-1w c1-1x c1-1y c1-d c1-e c1-f c1-g" data-tccl="ux2.CONTACT.contact7.Content.Default.Link.Default.30534.click,click">info@armenianasa.org</a>
                   </div>
                 </div>
                 <div className="mt-8 text-center">
@@ -542,7 +583,7 @@ const ContactUs = () => {
                 </div>
               </div>
               <div className="flex flex-col lg:max-w-[900px] sm:w-[500px] ">
-                <form >
+                <form autoComplete='off' onSubmit={sendMailMessage} >
                   <div>
 
                     <span className="uppercase text-sm text-gray-600 font-bold">Full Name</span>
@@ -565,6 +606,7 @@ const ContactUs = () => {
                   </div>
                   <div className="mt-8">
                     <button
+                    disabled={loading}
                       type='submit'
                       onClick={(e) => sendMailMessage(e)}
                       className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
