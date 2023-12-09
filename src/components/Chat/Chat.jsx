@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { Widget, addResponseMessage, } from 'react-chat-widget';
 import 'tailwindcss/tailwind.css';
@@ -9,6 +10,8 @@ import { sendMail } from '../../store/action/ContactAction';
 
 const MyChatComponent = () => {
   const dispatch = useDispatch();
+  const [succes, setSucces] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showMail, setShowMail] = useState(false);
   const [mailVal, setMailVal] = useState({
     mail: "",
@@ -22,7 +25,7 @@ const MyChatComponent = () => {
   const handleNewUserMessage = async (newMessage) => {
     setMailVal({ ...mailVal, text: newMessage })
 
-    await dispatch(sendMail(mailVal))
+    await dispatch(sendMail(mailVal,setLoading,setSucces ))
 
   };
   const widgetConfig = {

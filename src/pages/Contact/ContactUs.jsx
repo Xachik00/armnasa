@@ -1,9 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { sendMail } from '../../store/action/ContactAction';
+import { EditContact, getContact, sendMail } from '../../store/action/ContactAction';
 import Swal from 'sweetalert2';
+import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import useAuth from '../../hooks/AdminHooks/useAuth';
+import { useSelector } from 'react-redux';
 
 const ContactUs = () => {
+
+  const [lng, setLng] = useState(localStorage.getItem("addLang"));
+  useEffect(() => {
+    handleLanguageChange();
+  }, [localStorage.getItem("addLang")]);
+
+  async function handleLanguageChange() {
+    let language = localStorage.getItem("addLang");
+    setLng(JSON.parse(language));
+  }
+
+  const { auth } = useAuth()
+  const [editVal, setEditVal] = useState({
+    title: "",
+    text: "",
+    mail: "",
+  });
+  const [errorMail, setErrorMail] = useState(false);
+  const [showEdit, setShowEdit] = useState(0);
+
   document.title = 'Contact | Armenian Nasa'
   const [email, setEmail] = useState({
     fullName: "",
@@ -17,7 +40,9 @@ const ContactUs = () => {
   const sendMailMessage = async (e) => {
     e?.preventDefault();
     try {
-      await dispatch(sendMail(email, setLoading, setSucces))
+      if (!errorMail) {
+        await dispatch(sendMail(email, setLoading, setSucces))
+      }
     } catch (error) {
       console.error(error);
     }
@@ -60,6 +85,25 @@ const ContactUs = () => {
 
   }, [loading,])
 
+  const saveToEdit = async (id) => {
+    try {
+      if (!errorMail) {
+
+        dispatch(EditContact(id, editVal))
+        dispatch(getContact());
+      }
+
+      setShowEdit(0)
+    } catch (error) {
+      console?.error(error)
+    }
+  }
+
+  let reg = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  useEffect(() => {
+    dispatch(getContact());
+  }, [dispatch])
+  const { Contact } = useSelector((state) => state?.Contact)
 
   return (
     <div className="w-full min-h-[100vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
@@ -68,18 +112,54 @@ const ContactUs = () => {
         <div className=" text-gray-100 px-2 py-12"  >
           <div
             className="  p-2  xl:px-28 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
-            <div className=" w-full col-span-2 ">
-              <img className="  mx-auto" src="./Images/logo.webp" alt="" />
-            </div>
             <div className='flex w-[100%] justify-center flex-col  md:flex-row md:justify-between '>
               <div className="flex flex-col justify-between max-w-[500px] ">
                 <div>
-                  <h2 className="text-4xl lg:text-5xl font- bold leading-tight text-blue-500">   Armenian AeroSpace Agency</h2>
-                  <p className=' text-2xl mt-2'>Better yet, see us in person!</p>
-                  <div className="text-gray-700 mt-8 flex flex-col">
-                    <p> 15 A.Mikoyan str, Yerevan, Armenia </p>
-                    <a aria-haspopup="false" data-ux="Link" data-aid="CONTACT_INFO_EMAIL_REND" href="mailto:info@armenianasa.org" data-typography="LinkAlpha" className="x-el x-el-a c1-1j c1-1k c1-1l c1-1m c1-1a c1-1n c1-1o c1-b c1-1v c1-c c1-1w c1-1x c1-1y c1-d c1-e c1-f c1-g" data-tccl="ux2.CONTACT.contact7.Content.Default.Link.Default.30534.click,click">info@armenianasa.org</a>
-                  </div>
+                  <h2 className="text-4xl lg:text-5xl font- bold leading-tight text-blue-500">Armenian AeroSpace Agency</h2>
+                  {showEdit !== Contact[0]?.id ? <>
+                    <p className=' text-2xl mt-2'>{Contact[0]?.title}</p>
+                    <div className="text-gray-700 mt-8 flex flex-col">
+                      <p> {Contact[0]?.text} </p>
+                      <a aria-haspopup="false" data-ux="Link" data-aid="CONTACT_INFO_EMAIL_REND" href="mailto:info@armenianasa.org" data-typography="LinkAlpha" className="x-el x-el-a c1-1j c1-1k c1-1l c1-1m c1-1a c1-1n c1-1o c1-b c1-1v c1-c c1-1w c1-1x c1-1y c1-d c1-e c1-f c1-g" data-tccl="ux2.CONTACT.contact7.Content.Default.Link.Default.30534.click,click">{Contact[0]?.mail}</a>
+                    </div>
+                  </> :
+                    <>
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.title} onChange={(e) => setEditVal({ ...editVal, title: e.target.value })} />
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.text} onChange={(e) => setEditVal({ ...editVal, text: e.target.value })} />
+                      <input type="email"
+                        className={errorMail ? 'text-gray-700 mt-8 flex flex-col border-2 border-black' : "text-gray-700 mt-8 flex flex-col border-2 border-red-500' "}
+                        value={editVal?.mail}
+                        onChange={(e) => {
+                          if (!reg.test(e.target.value.trim())) {
+                            setErrorMail(true)
+                          } else {
+                            setErrorMail(false)
+                          }
+                          setEditVal({ ...editVal, mail: e.target.value })
+                        }} />
+                      <div className=" mt-5 flex gap-5 ">
+                        <CheckOutlined
+                          onClick={() => { saveToEdit(editVal?.id) }}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+
+
+                        />
+                        <CloseOutlined
+                          onClick={() => setShowEdit(0)}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+
+
+                        />
+                      </div>
+                    </>
+
+                  }
+                  {!lng && auth?.role === "admin" && showEdit !== Contact[0]?.id && (
+                    <div className="w-[100px] flex justify-between mt-4">
+                      <EditOutlined onClick={() => { setEditVal({ ...Contact[0] }); setShowEdit(Contact[0]?.id) }}
+                        className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
+                    </div>
+                  )}
                 </div>
                 <div className="mt-8 text-center">
                   <svg className="w-full"
@@ -581,35 +661,134 @@ const ContactUs = () => {
               </div>
               <div className="flex flex-col lg:max-w-[900px] sm:w-[500px] ">
                 <form autoComplete='off' onSubmit={sendMailMessage} >
-                  <div>
+                  {showEdit !== Contact[1]?.id ? <div>
+                    <span className="uppercase text-sm text-gray-600 font-bold">{Contact[1]?.title}</span>
+                    <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                      type="text" placeholder={Contact[1]?.text} value={email?.fullName} onChange={(e) => setEmail({ ...email, fullName: e.target.value })} />
+                  </div>
+                    :
+                    <>
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.title} onChange={(e) => setEditVal({ ...editVal, title: e.target.value })} />
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.text} onChange={(e) => setEditVal({ ...editVal, text: e.target.value })} />
+                      <div className=" mt-5 flex gap-5 ">
+                        <CheckOutlined
+                          onClick={() => { saveToEdit(editVal?.id) }}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                        <CloseOutlined
+                          onClick={() => setShowEdit(0)}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                      </div>
+                    </>
+                  }
+                  {!lng && auth?.role === "admin" && showEdit !== Contact[1]?.id && (
+                    <div >
+                      <EditOutlined onClick={() => { setEditVal({ ...Contact[1] }); setShowEdit(Contact[1]?.id) }}
+                        className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
+                    </div>
+                  )}
+                  {showEdit !== Contact[2]?.id ? <div className="mt-8">
+                    <span className="uppercase text-sm text-gray-600 font-bold">{Contact[2]?.title}</span>
+                    <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                      placeholder={Contact[2]?.text}
+                      type="email" value={email?.mail} onChange={(e) => {
+                        if (!reg.test(e.target.value.trim())) {
+                          setErrorMail(true)
+                        } else {
+                          setErrorMail(false)
+                        }
+                        setEmail({ ...email, mail: e.target.value })
+                      }} />
+                      <p className=' text-red-500'>{errorMail&&'error'}</p>
+                  </div>
+                    :
 
-                    <span className="uppercase text-sm text-gray-600 font-bold">Full Name</span>
-                    <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                      type="text" placeholder="Full Name" value={email?.fullName} onChange={(e) => setEmail({ ...email, fullName: e.target.value })} />
-                  </div>
-                  <div className="mt-8">
-                    <span className="uppercase text-sm text-gray-600 font-bold">Email</span>
-                    <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                      placeholder='Email'
-                      type="email" value={email?.mail} onChange={(e) => setEmail({ ...email, mail: e.target.value })} />
-                  </div>
-                  <div className="mt-8">
-                    <span className="uppercase text-sm text-gray-600 font-bold">Message</span>
+                    <>
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.title} onChange={(e) => setEditVal({ ...editVal, title: e.target.value })} />
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.text} onChange={(e) => setEditVal({ ...editVal, text: e.target.value })} />
+                      <div className=" mt-5 flex gap-5 ">
+                        <CheckOutlined
+                          onClick={() => { saveToEdit(editVal?.id) }}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                        <CloseOutlined
+                          onClick={() => setShowEdit(0)}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                      </div>
+                    </>
+
+                  }
+                  {!lng && auth?.role === "admin" && showEdit !== Contact[2]?.id && (
+                    <div >
+                      <EditOutlined onClick={() => { setEditVal({ ...Contact[2] }); setShowEdit(Contact[2]?.id) }}
+                        className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
+                    </div>
+                  )}
+                  {showEdit !== Contact[3]?.id ? <div className="mt-8">
+                    <span className="uppercase text-sm text-gray-600 font-bold">{Contact[3]?.title}</span>
                     <textarea
-                      placeholder='Message'
+                      placeholder={Contact[3]?.text}
                       className="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline resize-none"
                       value={email?.text} onChange={(e) => setEmail({ ...email, text: e.target.value })}
                     ></textarea>
                   </div>
-                  <div className="mt-8">
+                    :
+                    <>
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.title} onChange={(e) => setEditVal({ ...editVal, title: e.target.value })} />
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.text} onChange={(e) => setEditVal({ ...editVal, text: e.target.value })} />
+                      <div className=" mt-5 flex gap-5 ">
+                        <CheckOutlined
+                          onClick={() => { saveToEdit(editVal?.id) }}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                        <CloseOutlined
+                          onClick={() => setShowEdit(0)}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                      </div>
+                    </>
+
+                  }
+                  {!lng && auth?.role === "admin" && showEdit !== Contact[3]?.id && (
+                    <div >
+                      <EditOutlined onClick={() => { setEditVal({ ...Contact[3] }); setShowEdit(Contact[3]?.id) }}
+                        className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
+                    </div>
+                  )}
+                  {showEdit !== Contact[4]?.id ? <div className="mt-8">
                     <button
                       disabled={loading}
                       type='submit'
                       onClick={(e) => sendMailMessage(e)}
                       className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-                      Send Message
+                      {Contact[4]?.title}
                     </button>
+
                   </div>
+                    :
+                    <>
+                      <input type="text" className="text-gray-700 mt-8 flex flex-col border-2 border-black" value={editVal?.title} onChange={(e) => setEditVal({ ...editVal, title: e.target.value })} />
+                      <div className=" mt-5 flex gap-5 ">
+                        <CheckOutlined
+                          onClick={() => { saveToEdit(editVal?.id) }}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                        <CloseOutlined
+                          onClick={() => setShowEdit(0)}
+                          className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                        />
+                      </div>
+                    </>
+
+                  }
+                  {!lng && auth?.role === "admin" && showEdit !== Contact[4]?.id && (
+                    <div >
+                      <EditOutlined onClick={() => { setEditVal({ ...Contact[4] }); setShowEdit(Contact[4]?.id) }}
+                        className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
+                    </div>
+                  )}
                 </form>
               </div>
             </div>

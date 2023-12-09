@@ -188,13 +188,13 @@ let language = JSON.parse(item)
                               onClick={() => { }}
                               className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
 
-                            // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
+                            
                             />
                             <CloseOutlined
                               onClick={() => setAddShow(false)}
                               className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
 
-                            // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
+                            
                             />
                           </div>
                         }

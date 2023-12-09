@@ -4,6 +4,7 @@ import AboutReducer from './slice/AboutSlice';
 import ProgramsReducer from './slice/ProgramsSlice';
 import AmadeReducer from './slice/AmadeSlice';
 import PartnersReducer from './slice/Partners';
+import ContactReducer from "./slice/ContactSlice"
 const store = configureStore({
   reducer: {
     About:AboutReducer,
@@ -11,6 +12,7 @@ const store = configureStore({
     Programs:ProgramsReducer,
     Amade:AmadeReducer,
     Partners:PartnersReducer,
+    Contact:ContactReducer,
     // Header:HeaderReducer,
     // Wish:WishReducer,
     // OneWish:OneWishReducer,

@@ -10,10 +10,8 @@ let language = JSON.parse(item)
 export const getFetchHome = () => {
     return async (dispatch)=>{
         try{
-            
             dispatch(fetchingHome());   
             const response =await axios.get(URL + `agency/getAll/${language}`);            
-            
             dispatch(fetchHome(response?.data));
         }
         catch(error){

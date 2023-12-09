@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { AddPrograms, EditPrograms, deletePrograms, getFetchPrograms } from "../store/action/ProgramsAction";
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { DeleteItem } from "../store/action/HomeAction";
-import { uploadImageHandleradd } from "../store/action/UploadImage";
 import { Upload } from "../components/Admin/Upload";
 import useAuth from "../hooks/AdminHooks/useAuth";
 
@@ -15,20 +14,20 @@ const Programs = () => {
   const { Programs } = useSelector((state) => state?.Programs);
   const dispatch = useDispatch();
 
-  
+
   const [langText, setLangText] = useState([]);
   const [editLang, setEditLang] = useState("");
-  
+
   const [edit, setEdit] = useState("");
   const [img, setImg] = useState("");
   const [addShow, setAddShow] = useState(false);
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
-  const {auth}=useAuth()
+  const { auth } = useAuth()
   const [add, setAdd] = useState({
     text: "",
     title: "",
   });
-  
+
   useEffect(() => {
     dispatch(getFetchPrograms());
   }, [dispatch]);
@@ -98,8 +97,8 @@ const Programs = () => {
     let item = JSON.parse(language);
     for (let i = 0; i < Programs.length; i++) {
       arr.push({
-        picture:Programs[i].picture,
-        language: editLang ,
+        picture: Programs[i].picture,
+        language: editLang,
         title: "",
         text: "",
       });
@@ -111,11 +110,11 @@ const Programs = () => {
       await getItemCount();
     }
     if (langText.length === Programs.length) {
-      let newText = [...langText ];
+      let newText = [...langText];
       newText[index][e.name] = e.value;
       setLangText(newText);
     }
-    localStorage.setItem('languageData',JSON.stringify([langText,"Programs"]))
+    localStorage.setItem('languageData', JSON.stringify([langText, "Programs"]))
 
   }
   console.log(langText);
@@ -145,20 +144,19 @@ const Programs = () => {
               Programs?.map((el, index) => (
                 <div
                   key={index}
-                  className={`${
-                    index === 0 || index % 3 === 0 ? "col-span-2" : "sm:col-span-1 col-span-2"
-                  } flex flex-col gap-5    justify-start items-center text-[25px]`}
+                  className={`${index === 0 || index % 3 === 0 ? "col-span-2" : "sm:col-span-1 col-span-2"
+                    } flex flex-col gap-5    justify-start items-center text-[25px]`}
                 >
                   <img src={el.picture} alt="" className=" rounded-[12px]" />
                   <h2 className=" text-[24px]">{el.title}</h2>
                   <p className=" text-[18px]">{el.text}</p>
-                  {!lng && auth?.role==="admin"&&(
+                  {!lng && auth?.role === "admin" && (
                     <div className=" flex gap-5 mt-5">
                       <EditOutlined onClick={() => setEdit(el)} className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
                       <DeleteOutlined onClick={() => deleteItem(el.id)} className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
                     </div>
                   )}
-                  {lng && auth?.role==="admin"&& (
+                  {lng && auth?.role === "admin" && (
                     <div className="container">
                       <h1 className="text-white text-lg text-center mt-4">
                         Add Traslate Data
@@ -188,14 +186,14 @@ const Programs = () => {
                         {
                           <div className="  mt-5 flex gap-5 text-white ">
                             <CheckOutlined
-                              onClick={() => {}}
+                              onClick={() => { }}
                               className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
-                              // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
+                            // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                             />
                             <CloseOutlined
                               onClick={() => setAddShow(false)}
                               className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
-                              // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
+                            // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                             />
                           </div>
                         }
@@ -220,7 +218,7 @@ const Programs = () => {
                   />
                 </label>
               )}
-                             <Upload name={'EditLogo'} setImg={setImg}  />
+              <Upload name={'EditLogo'} setImg={setImg} />
 
               <textarea
                 name="title"
@@ -244,20 +242,20 @@ const Programs = () => {
               {
                 <div className=" flex gap-5 mt-5">
                   <CheckOutlined
-                  className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                    className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
                     onClick={() => {
                       editPrograms();
                     }}
                   />
-                  <CloseOutlined onClick={() => setEdit("")} className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"/>
+                  <CloseOutlined onClick={() => setEdit("")} className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" />
                 </div>
               }
             </div>
           )}
-          {!edit&&!lng && auth?.role==="admin"&&(
+          {!edit && !lng && auth?.role === "admin" && (
             <div className=" flex justify-center gap-5 mt-5">
               <PlusOutlined
-              className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+                className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
                 // className=" flex justify-center items-center hover:scale-150 cursor-pointer transition ease-out duration-700"
                 onClick={() => setAddShow(true)}
               />
@@ -282,12 +280,12 @@ const Programs = () => {
               )}
             </label>
 
-            <Upload name={'EditLogo'} setImg={setImg}  />
+            <Upload name={'EditLogo'} setImg={setImg} />
 
             <textarea
               name="title"
               className="block p-2.5 my-5 w-[60%] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
-              
+
               type="text"
               value={add?.title}
               placeholder="Title"
