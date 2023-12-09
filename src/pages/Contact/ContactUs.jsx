@@ -14,7 +14,7 @@ const ContactUs = () => {
 
               <img className="  mx-auto" src="./Images/logo.webp" alt="" />
             </div>
-            <div className='flex w-[100%] justify-center  flex-wrap lg:justify-between '>
+            <div className='flex w-[100%] justify-center flex-col  md:flex-row md:justify-between '>
             <div className="flex flex-col justify-between max-w-[500px] ">
               <div>
 

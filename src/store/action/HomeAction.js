@@ -5,13 +5,14 @@ import axios from "axios";
 
 const URL = process.env.REACT_APP_BASE_URL
 
-
+let item = localStorage.getItem("language");
+let language = JSON.parse(item)
 export const getFetchHome = () => {
     return async (dispatch)=>{
         try{
             
             dispatch(fetchingHome());   
-            const response =await axios.get(URL + 'agency/getAll');            
+            const response =await axios.get(URL + `agency/getAll/${language}`);            
             
             dispatch(fetchHome(response?.data));
         }

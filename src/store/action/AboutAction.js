@@ -5,13 +5,14 @@ import { fetchAbout, fetchErrorAbout, fetchingAbout } from "../slice/AboutSlice"
 
 const URL = process.env.REACT_APP_BASE_URL
 
-
+let item = localStorage.getItem("language");
+let language = JSON.parse(item)
 export const getFetchAbout = () => {
   return async (dispatch) => {
     try {
 
       dispatch(fetchingAbout());
-      const response = await axios.get(URL + 'about/getAll');
+      const response = await axios.get(URL + `about/getAll/${language}`);
 
       dispatch(fetchAbout(response?.data));
     }

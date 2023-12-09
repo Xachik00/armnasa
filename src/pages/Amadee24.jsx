@@ -51,17 +51,13 @@ const Amadee24 = () => {
   }
 
   async function editAmade() {
-    // const obj = {
-    //   ...edit,
-    //   picture: img,
-    // };
-    await dispatch(EditAmade(edit));
+    const obj = {
+      ...edit,
+      picture: img,
+    };
+    await dispatch(EditAmade(obj));
     await dispatch(getFetchAmade());
-    setEdit({
-      text: "",
-      title: "",
-      picture: ""
-    });
+    setEdit('');
   }
 
   useEffect(() => {
@@ -70,9 +66,12 @@ const Amadee24 = () => {
 
 
   async function addData() {
+    let item = localStorage.getItem("language");
+    let language = JSON.parse(item)
     const obj = {
       ...add,
       picture: img,
+      language,
     };
     await dispatch(AddAmade(obj));
     setAddShow(false);

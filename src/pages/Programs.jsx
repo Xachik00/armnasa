@@ -56,9 +56,12 @@ const Programs = () => {
   }
 
   async function addData() {
+    let item = localStorage.getItem("language");
+    let language = JSON.parse(item)
     const obj = {
       ...add,
       picture: img,
+      language,
     };
     await dispatch(AddPrograms(obj));
     setAddShow(false);

@@ -5,13 +5,14 @@ import { fetchErrorAmade, fetchAmade, fetchingAmade } from "../slice/AmadeSlice"
 
 const URL = process.env.REACT_APP_BASE_URL
 
-
+let item = localStorage.getItem("language");
+let language = JSON.parse(item)
 export const getFetchAmade = () => {
     return async (dispatch) => {
         try {
 
             dispatch(fetchingAmade());
-            const response = await axios.get(URL + 'amade/getAll');
+            const response = await axios.get(URL +  `amade/getAll/${language}`);
 
             dispatch(fetchAmade(response?.data));
         }
