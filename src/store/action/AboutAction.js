@@ -12,7 +12,7 @@ export const getFetchAbout = () => {
     try {
 
       dispatch(fetchingAbout());
-      const response = await axios.get(URL + `about/getAll/${language}`);
+      const response = await axios.get(URL + `about/getAll/${language||"US"}`);
 
       dispatch(fetchAbout(response?.data));
     }

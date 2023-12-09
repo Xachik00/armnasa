@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import useAuth from '../../hooks/AdminHooks/useAuth';
 import { getFetchHeader } from '../../store/action/HeaderAction';
 const Header = () => {
-  const [languages, setLanguages] = useState("US"); // Use useState hook
+  const [languages, setLanguages] = useState("US"); 
   const [scrollHeader, setScrollHeader] = useState(false)
  
   let bb = window.location.pathname;

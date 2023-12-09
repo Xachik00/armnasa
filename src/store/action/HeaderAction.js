@@ -12,7 +12,8 @@ export const getFetchHeader = () => {
     try {
 
       dispatch(fetchingHeader());
-      const response = await axios.get(URL + `header/getAll/${language}`);
+      const response = await axios.get(URL + `header/getAll/${language||"US"}`);
+      console.log(response);
       console.log(response.data);
       dispatch(fetchHeader(response?.data));
     }

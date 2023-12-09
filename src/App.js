@@ -1,3 +1,4 @@
+
 import { Route, Routes } from "react-router-dom";
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
@@ -9,7 +10,7 @@ import ContactUs from "./pages/Contact/ContactUs";
 import MyChatComponent from "./components/Chat/Chat";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import useAuth from "./hooks/AdminHooks/useAuth";
 
 
@@ -24,7 +25,7 @@ function App() {
   
   return (
     <div className="App">
-      { auth?.role =='admin'?<></>:<Header />}
+      { auth?.role ==='admin'?<></>:<Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/programs" element={<Programs />} />
@@ -32,11 +33,9 @@ function App() {
         <Route path="/amadee" element={<Amadee24 />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/admin" element={!auth?.accessToken ? <Login /> : < Admin />} />
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
-      <MyChatComponent/>
-      {auth?.role !=='admin'&&<Footer />}
+{     auth?.role ==='admin'&& <MyChatComponent/>}
+      {auth?.role ==='admin'?<></>:<Footer />}
     </div>
   );
 }

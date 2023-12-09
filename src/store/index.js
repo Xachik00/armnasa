@@ -7,6 +7,7 @@ import PartnersReducer from './slice/Partners';
 import LanguageReducer from './slice/LanguageSlice'
 import HeaderReducer from './slice/HeaderSlice'
 
+import ContactReducer from "./slice/ContactSlice"
 const store = configureStore({
   reducer: {
     About:AboutReducer,
@@ -16,6 +17,7 @@ const store = configureStore({
     Partners:PartnersReducer,
     Language:LanguageReducer,
     Header:HeaderReducer,
+    Contact:ContactReducer,
     // Header:HeaderReducer,
     // Wish:WishReducer,
     // OneWish:OneWishReducer,

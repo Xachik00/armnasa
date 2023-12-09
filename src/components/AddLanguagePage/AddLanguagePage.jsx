@@ -14,14 +14,17 @@ import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 import { AddLanguage } from '../../store/action/LanguageAction'
 import { AddHeaderLang } from '../../store/action/HeaderAction'
+import ContactChange from '../Admin/ContactChange'
+import { AddContact } from '../../store/action/ContactAction'
+import { useNavigate } from 'react-router-dom'
 
-export const AddLanguagePage = () => {
-
-  const mypage = ['Agency', "About", "Programs", 'Amadee-24', "Header"]
+export const AddLanguagePage = ({setPage}) => {
+  const navigate = useNavigate();
+  const mypage = ['Agency', "About", "Programs", 'Amadee-24', "Header","Contact"]
   const [step, setStep] = useState(0)
   const [countries, setCountries] = useState([]);
   const [countriesValue, setCountriesValue] = useState('');
-  const [languages, setLanguages] = useState("US"); // Use useState hook
+  const [languages, setLanguages] = useState("US"); 
   const dispatch = useDispatch();
   const [loading,setLoading]= useState(false)
   const [loading1,setLoading1]= useState(false) 
@@ -29,6 +32,23 @@ export const AddLanguagePage = () => {
   const [loading2,setLoading2]= useState(false)
   const [loading3,setLoading3]= useState(false)
   const [loading4,setLoading4]= useState(false)
+  const [loading5,setLoading5]= useState(false)
+  useEffect(()=>{
+    if(step === 0 ){
+      localStorage.removeItem("languageData1")
+      localStorage.removeItem("languageData2")
+      localStorage.removeItem("languageData3")
+      localStorage.removeItem("languageData4")
+      localStorage.removeItem("languageData5")
+      localStorage.removeItem("languageData6")
+      localStorage.removeItem("selectLang")
+
+      
+
+      setLanguages('US')
+
+    }
+  },[step])
 
 
   // const sendMailMessage = async (e) => {
@@ -59,13 +79,15 @@ export const AddLanguagePage = () => {
         showConfirmButton: false,
         timer: 1500
       }).then(() => {
-        setSucces("")
+        if(localStorage?.getItem("languageData1")&&localStorage?.getItem("languageData2")&&localStorage?.getItem("languageData3")&&localStorage?.getItem("languageData4")&&localStorage?.getItem("languageData5")&&localStorage?.getItem("languageData6")){
+          setSucces("")
+        }
       });
     }
   }, [succes, loading, dispatch]);
 
   useEffect(() => {
-    if (loading || loading1 || loading2 || loading3) {
+    if (loading5) {
       Swal.fire({
         title: 'Loading...',
         showConfirmButton: false,
@@ -75,7 +97,7 @@ export const AddLanguagePage = () => {
       })
     }
 
-  }, [loading,loading1,loading2,loading3])
+  }, [loading5])
   useEffect(() => {
     // Fetch country data
     fetch('https://restcountries.com/v3.1/all')
@@ -102,36 +124,67 @@ export const AddLanguagePage = () => {
 
   function changeLanguage(e) {
     setLanguages(e);
-    dispatch(AddLanguage({text:e}))
+    
 
     localStorage.setItem('selectLang', JSON.stringify(e))
   }
   async function saveData() {
+    const loc = JSON?.parse(localStorage?.getItem("selectLang"))
+    dispatch(AddLanguage({text:loc}))
     const data1 = localStorage.getItem('languageData1')
     const langData1 = JSON.parse(data1)
    await dispatch(AddHome(langData1,setLoading,setSucces));
-    localStorage.removeItem("languageData1")
+   if(succes === "ok"){
+     
+     localStorage.removeItem("languageData1")
+  }
 
     const data2 = localStorage.getItem('languageData2')
     const langData2 = JSON.parse(data2)
-   await dispatch(AddAbout(langData2,setLoading1,setSucces));
-    localStorage.removeItem("languageData2")
+    await dispatch(AddAbout(langData2,setLoading1,setSucces));
+    if(succes === "ok"){
+      localStorage.removeItem("languageData2")
+     
+    }
+   
 
 
     const data3 = localStorage.getItem('languageData3')
     const langData3 = JSON.parse(data3)
    await dispatch(AddPrograms(langData3,setLoading2,setSucces));
-    localStorage.removeItem("languageData3")
+   if(succes === "ok"){
+     
+     localStorage.removeItem("languageData3")
+   }
 
     const data4 = localStorage.getItem('languageData4')
     const langData4 = JSON.parse(data4)
    await dispatch(AddAmade(langData4,setLoading3,setSucces));
-    localStorage.removeItem("languageData4")
+   if(succes === "ok"){
+     
+     localStorage.removeItem("languageData4")
+   }
 
     const data5 = localStorage.getItem('languageData5')
     const langData5 = JSON.parse(data5)
    await dispatch(AddHeaderLang(langData5,setLoading4,setSucces));
-    localStorage.removeItem("languageData5")
+   if(succes === "ok"){
+     
+     localStorage.removeItem("languageData5")
+   }
+
+    const data6 = localStorage.getItem('languageData6')
+    const langData6 = JSON.parse(data6)
+   await dispatch(AddContact(langData6,setLoading5,setSucces));
+   if(succes === "ok"){
+     
+     localStorage.removeItem("languageData6")
+   }
+
+    localStorage?.setItem("page",JSON?.stringify("Home"))
+    setStep(0)
+    setPage('Home')
+   
   }
   return (
     <div className=' flex flex-col items-center'>
@@ -148,10 +201,11 @@ export const AddLanguagePage = () => {
       {mypage[step] === "Programs" && <Programs />}
       {mypage[step] === "Amadee-24" && <Amadee24 />}
       {mypage[step] === "Header" && <HeaderChange />}
+      {mypage[step] === 'Contact' && <ContactChange/>}
       <div className=' flex justify-between w-[300px] my-5 text-white'>
         {step > 0 && <button className='p-2 w-[100px] rounded-[20px] bg-slate-600' onClick={() => setStep(step - 1)}>Prev</button>}
-        {step != 4 && <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={() => setStep(step + 1)}>next</button>}
-        {step == 4 && <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={() => { saveData() }}>Save</button>}
+        {step != 5 && <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={() => setStep(step + 1)}>next</button>}
+        {step == 5 && <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' disabled={loading5} onClick={() => { saveData() }}>Save</button>}
       </div>
     </div>
   )

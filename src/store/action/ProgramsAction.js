@@ -12,7 +12,7 @@ export const getFetchPrograms = () => {
     try {
 
       dispatch(fetchingPrograms());
-      const response = await axios.get(URL + `programs/getAll/${language}`);
+      const response = await axios.get(URL + `programs/getAll/${language||"US"}`);
 
       dispatch(fetchPrograms(response?.data));
     }

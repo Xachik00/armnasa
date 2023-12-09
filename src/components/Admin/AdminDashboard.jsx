@@ -57,7 +57,7 @@ const AdminDashboard = ({ page, setPage }) => {
             {active === 'Setings' ? < UpOutlined /> : <DownOutlined />}
           </li>
           <ul className={`${active === 'Setings' ? " block" : "hidden"} pl-10 [&>li]:p-1 [&>li]:border-b-2  [&>li]:cursor-pointer [&>*]:flex [&>*]:items-center [&>*]:gap-3`} onClick={(e) => setPage(e.target.innerText)}>
-            <li className={`${page === 'Login,Password' ? "border-green-500 text-green-500" : " border-blue-500 "}`}><LockOutlined />Login,Password</li>
+            {/* <li className={`${page === 'Login,Password' ? "border-green-500 text-green-500" : " border-blue-500 "}`}><LockOutlined />Login,Password</li> */}
             <li className={`${page === 'Language' ? "border-green-500 text-green-500" : " border-blue-500"}`}><GlobalOutlined />Language</li>
           </ul>
           <ul>
@@ -67,17 +67,17 @@ const AdminDashboard = ({ page, setPage }) => {
 
           </ul>
           <ul>
-            <li className=' flex justify-between items-center cursor-pointer p-2 bg-[#3b3b438b] border-b-2 border-blue-500' onClick={() => { active === 'Footer' ? setActive('') : setActive('Footer'); setPage('Footer') }}>
+            {/* <li className=' flex justify-between items-center cursor-pointer p-2 bg-[#3b3b438b] border-b-2 border-blue-500' onClick={() => { active === 'Footer' ? setActive('') : setActive('Footer'); setPage('Footer') }}>
               <p className={` flex gap-2 items-center ${active === 'Footer' ? " text-green-500" : ""}`}><BorderBottomOutlined />Footer</p>
-            </li>
+            </li> */}
 
           </ul>
-          <ul>
+          {/* <ul>
             <li className=' flex justify-between items-center cursor-pointer p-2  bg-[#3b3b438b] border-b-2 border-blue-500' onClick={() => { active === 'Backraund' ? setActive('') : setActive('Backraund'); setPage('Backraund') }}>
               <p className={` flex gap-2 items-center ${active === 'Backraund' ? " text-green-500" : ""}`}><BgColorsOutlined />Backraund Image</p>
             </li>
 
-          </ul>
+          </ul> */}
           <ul>
             <li className=' flex justify-between items-center cursor-pointer p-2  text-black' onClick={() => { localStorage.removeItem('auth');setAuth({})}}>
               <p className={` flex gap-2 items-center `}><img src='./Images/logoout.png' className=' w-8 ' />Exit</p>

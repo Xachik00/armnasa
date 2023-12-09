@@ -12,7 +12,7 @@ export const getFetchAmade = () => {
         try {
 
             dispatch(fetchingAmade());
-            const response = await axios.get(URL +  `amade/getAll/${language}`);
+            const response = await axios.get(URL +  `amade/getAll/${language||"US"}`);
 
             dispatch(fetchAmade(response?.data));
         }

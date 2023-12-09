@@ -13,17 +13,17 @@ import HeaderChange from '../components/Admin/HeaderChange'
 const Admin = () => {
   document.title = "Admin | Armenian Nasa ";
 
-
-
-  const [page, setPage] = useState("Home");
+  const [page, setPage] = useState(JSON?.parse(localStorage?.getItem("page"))||"Home");
   useEffect(() => {
     if (page === "Language") {
       localStorage.setItem("addLang", JSON.stringify(page));
+
     } else {
+      
       localStorage.removeItem('addLang')
     }
+    localStorage?.setItem("page",JSON?.stringify(page))
   }, [page]);
-
 
 
 
@@ -45,10 +45,10 @@ const Admin = () => {
             {page === "Programs" && <Programs />}
             {page === "Amadee-24" && <Amadee24 />}
             {page === "Contact" && <ContactUs />}
+
             {page === "Header" && <HeaderChange />}
-            {page === "Footer" && <div>Footer</div>}
             {page === "Backraund" && <BackraundChange />}
-            {page === "Language" && <AddLanguagePage />}
+            {page === "Language" && <AddLanguagePage setPage={setPage}/>}
           </div>
         </div>
       </div>
