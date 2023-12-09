@@ -15,8 +15,9 @@ const Programs = () => {
   const { Programs } = useSelector((state) => state?.Programs);
   const dispatch = useDispatch();
 
-  
-  const [langText, setLangText] = useState([]);
+  const [langText, setLangText] = useState(JSON.parse(localStorage.getItem('languageData3'))||[]);
+  const [loading,setLoading] = useState(false)
+
   const [editLang, setEditLang] = useState("");
   
   const [edit, setEdit] = useState("");
@@ -24,6 +25,8 @@ const Programs = () => {
   const [addShow, setAddShow] = useState(false);
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
   const {auth}=useAuth()
+const [succes,setSucces]= useState('')
+
   const [add, setAdd] = useState({
     text: "",
     title: "",
@@ -63,7 +66,7 @@ const Programs = () => {
       picture: img,
       language,
     };
-    await dispatch(AddPrograms(obj));
+    await dispatch(AddPrograms(obj,setLoading,setSucces));
     setAddShow(false);
     setAdd({
       title: "",
@@ -115,7 +118,7 @@ const Programs = () => {
       newText[index][e.name] = e.value;
       setLangText(newText);
     }
-    localStorage.setItem('languageData',JSON.stringify([langText,"Programs"]))
+    localStorage.setItem('languageData3',JSON.stringify(langText))
 
   }
   console.log(langText);
@@ -185,7 +188,7 @@ const Programs = () => {
                             addlangText(e.target, index);
                           }}
                         />
-                        {
+                        {/* {
                           <div className="  mt-5 flex gap-5 text-white ">
                             <CheckOutlined
                               onClick={() => {}}
@@ -198,7 +201,7 @@ const Programs = () => {
                               // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                             />
                           </div>
-                        }
+                        } */}
                       </div>
                     </div>
                   )}

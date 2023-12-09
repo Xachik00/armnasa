@@ -14,8 +14,10 @@ const Home = () => {
   const [img, setImg] = useState('');
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
   const [addShow, setAddShow] = useState(false);
-  const [langText, setLangText] = useState([]);
+  const [langText, setLangText] = useState(JSON.parse(localStorage.getItem('languageData1'))||[]);
   const [editLang, setEditLang] = useState("");
+const [succes,setSucces]= useState('')
+console.log(Home);
 const {auth}=useAuth()
   const [add, setAdd] = useState({ 
     text: "",
@@ -89,7 +91,7 @@ const {auth}=useAuth()
       newText[index][e.name] = e.value;
       setLangText(newText);
     }
-    localStorage.setItem('languageData',JSON.stringify([langText,"Home"]))
+    localStorage.setItem('languageData1',JSON.stringify(langText))
   }
  
 
@@ -187,7 +189,7 @@ const {auth}=useAuth()
                   addlangText(e.target, 0);
                 }}
               />
-              {
+              {/* {
                 <div className=" mt-5 flex gap-5 text-white ">
                   <CheckOutlined
                     onClick={() => {}}
@@ -202,7 +204,7 @@ const {auth}=useAuth()
                     // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                   />
                 </div>
-              }
+              } */}
             </div>
           </div>
         )}

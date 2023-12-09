@@ -46,14 +46,19 @@ export const EditAmade = (obj) => {
         }
     }
 }
-export const AddAmade = (obj) => {
+    export const AddAmade = (obj,setLoading,setSucces ) => {
     return async () => {
-        console.log(obj);
         try {
+            setLoading(true)
             await axios.post(URL + `amade`,obj);
+            setLoading(false)
+    setSucces('ok')
+
         }
         catch (error) {
             console?.error(error)
+    setSucces(error)
+
         }
     }
 }

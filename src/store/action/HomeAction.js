@@ -13,7 +13,7 @@ export const getFetchHome = () => {
             
             dispatch(fetchingHome());   
             const response =await axios.get(URL + `agency/getAll/${language}`);            
-            
+            console.log(response.data);
             dispatch(fetchHome(response?.data));
         }
         catch(error){
@@ -65,14 +65,19 @@ export const getFetchHome = () => {
     }
   }
   }
-  export const AddHome = (obj) => {
+    export const AddHome = (obj,setLoading,setSucces) => {
     return async () => {
-        console.log(obj);
         try {
+          setLoading(true)
             await axios.post(URL + `agency`,obj);
-        }
+            setLoading(false)
+    setSucces('ok')
+
+          }
         catch (error) {
             console?.error(error)
+    setSucces(error)
+
         }
     }
 }

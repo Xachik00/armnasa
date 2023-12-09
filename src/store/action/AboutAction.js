@@ -48,12 +48,16 @@ export function deleteAbout(id) {
 
 
 
-export  function AddAbout(obj) {
+export  function AddAbout(obj,setLoading,setSucces) {
 return async()=>{
-  console.log(obj);
   try {
+    setLoading(true)
     await axios.post(`${URL}about`, obj);
+    setLoading(false)
+    setSucces('ok')
+
   } catch (error) {
+    setSucces(error)
     console.error(error)
   }
 }

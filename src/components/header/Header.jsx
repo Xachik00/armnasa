@@ -3,12 +3,30 @@ import React, { useEffect, useState } from 'react'
 import ReactFlagsSelect from 'react-flags-select';
 import { useNavigate } from 'react-router-dom';
 import { getCountryCode } from 'countries-list';
+import { useSelector } from 'react-redux';
+import { getFetchLanguage } from '../../store/action/LanguageAction';
+import { useDispatch } from 'react-redux';
+import useAuth from '../../hooks/AdminHooks/useAuth';
+import { getFetchHeader } from '../../store/action/HeaderAction';
 const Header = () => {
   const [languages, setLanguages] = useState("US"); // Use useState hook
   const [scrollHeader, setScrollHeader] = useState(false)
+ 
   let bb = window.location.pathname;
   window.onscroll = function () { myFunction() };
   const navigate = useNavigate();
+  const { Language } = useSelector((state) => state.Language);
+  const { Header } = useSelector((state) => state.Header);
+
+  const dispatch = useDispatch();
+  const { auth } = useAuth()
+  useEffect(() => {
+    dispatch(getFetchLanguage());
+    dispatch(getFetchHeader())
+  }, [dispatch]);
+  
+  console.log(Header);
+console.log(Language);
 
   function myFunction() {
     if (window.pageYOffset > 0) {
@@ -41,35 +59,9 @@ const Header = () => {
     window.location.reload();
 
   }
-  // const countryOptions = Object.entries(countriesList?.countries)?.map(([code, country]) => ({
-  //   value: code,
-  //   label: country.name,
-  // }));
-  const [countries, setCountries] = useState([]);
-  const [countriesValue, setCountriesValue] = useState('');
-  useEffect(() => {
-    // Fetch country data
-    fetch('https://restcountries.com/v3.1/all')
-      .then(response => response.json())
-      .then(data => {
-        setCountries(prevCountries => [
-          ...prevCountries,
-          ...data.map(el => el?.cca2)
-        ]);
-      })
-      .catch(error => {
-        console.error('Error fetching country data:', error);
-      });
-  }, []);
 
-  useEffect(() => {
-    if (!countriesValue) {
-      countries.map(el =>
-        setCountriesValue(prevCountriesValue => ({ ...prevCountriesValue, [el]: el }))
-      );
-      console.log(countriesValue);
-    }
-  }, [countries])
+
+  
 
   return (
     <div className={` ${scrollHeader ? "fixed z-50 sm:h-[80px]" : ""} w-full p-3 sm:p-0  bg-black sm:h-[120px] flex justify-center items-center border-b-[.5px] border-blue-500`}>
@@ -79,19 +71,20 @@ const Header = () => {
         </div>
         <div className="flex gap-5">
 
-        <div className=' text-[15px] sm:text-[18px] hidden sm:flex gap-6  [&>*:hover]:border-t-[1px]   [&>*]:border-b-[1px] [&>*]:ease-in [&>*]:duration-200 [&>*]:p-2  [&>*]:rounded-[12px]   '>
-          <a href="/" className={`${window?.location?.pathname === '/' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>ARMENIAN AEROSPACE AGENCY</a>
-          <a href="/about" className={`${window?.location?.pathname === '/about' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>ABOUT</a>
-          <a href="/programs" className={`${window?.location?.pathname === '/programs' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>PROGRAMS</a>
-          <a href="/amadee" className={`${window?.location?.pathname === '/amadee' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>AMADEE-24</a>
-          <a href="/contact" className={`${window?.location?.pathname === '/contact' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>CONTACT</a>
-        </div>
-
-            <ReactFlagsSelect countries={countries}
-              customLabels={countriesValue} selected={languages} onSelect={(countryCode) => changeLanguage(countryCode)}
-
-            />
+          <div className=' text-[15px] sm:text-[18px] hidden sm:flex gap-6  [&>*:hover]:border-t-[1px]   [&>*]:border-b-[1px] [&>*]:ease-in [&>*]:duration-200 [&>*]:p-2  [&>*]:rounded-[12px]   '>
+            <a href="/" className={`${window?.location?.pathname === '/' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[0]?.title}</a>
+            <a href="/about" className={`${window?.location?.pathname === '/about' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[1]?.title}</a>
+            <a href="/programs" className={`${window?.location?.pathname === '/programs' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[2]?.title}</a>
+            <a href="/amadee" className={`${window?.location?.pathname === '/amadee' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[3]?.title}</a>
+            <a href="/contact" className={`${window?.location?.pathname === '/contact' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[4]?.title}</a>
           </div>
+<div className='text-red-500'>
+          <ReactFlagsSelect  countries={Language.map((el)=>el.text)}
+            customLabels={''} selected={languages} onSelect={(countryCode) => changeLanguage(countryCode)}
+
+          /> 
+          </div>
+        </div>
         <div className=' sm:hidden'>
           <MenuOutlined className=' text-white text-[30px]' />
         </div>

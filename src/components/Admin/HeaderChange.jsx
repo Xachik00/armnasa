@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { getFetchHeader } from '../../store/action/HeaderAction';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const HeaderChange = () => {
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
+  const dispatch = useDispatch();
 
+  const { Header } = useSelector((state) => state.Header);
+  useEffect(() => {
+    dispatch(getFetchHeader());
+  }, [dispatch]);
     const [headarArray,setHeadaerArray] = useState([{
         id: 1,
         title: "ARMENIAN AEROSPACE AGENCY"
@@ -29,11 +37,33 @@ const HeaderChange = () => {
         border: "#2196F3"
     })
 
-
+const [langHeader,setLangHeader]= useState(JSON.parse(localStorage.getItem('languageData5'))||[]);
   useEffect(() => {
     handleLanguageChange();
   }, [localStorage.getItem("addLang")]);
 
+    async function getItemCount() {
+        const element = [...langHeader]
+    for (let i = 0; i < headarArray.length; i++) {
+        let item = localStorage.getItem("language");
+        let language = JSON.parse(item)
+        element.push({title:'',language})
+    }
+    setLangHeader(element)
+}
+console.log(langHeader);
+async function addLang(e,index){
+    if (!langHeader.length) {
+        await getItemCount();
+      }
+      if (Header.length === Header.length) {
+    const element = [...langHeader]
+    element[index].title = e;
+     setLangHeader(element)
+      }
+    localStorage.setItem('languageData5',JSON.stringify(langHeader))
+
+}
   function handleLanguageChange() {
     let language = localStorage.getItem("addLang");
     let item = JSON.parse(language)
@@ -55,19 +85,19 @@ const HeaderChange = () => {
         <div className={`px-5 min-h-20 w-full`} style={{backgroundColor:colors.backroundBG}}>
             {lng && <div className='gap-5 grid lg:grid-cols-2 xl:grid-cols-4 p-5 justify-center'>
             {
-                    headarArray?.map((el)=><div key={el.id}>
+                    Header?.map((el,index)=><div key={el.id}>
                         <h2 className={`p-2 w-40 sm:w-72 bg-[#ff000000]  rounded-xl text-[${colors?.color}] `} style={{borderColor:colors.border,color:colors.color}} >
-                            {el.title}
+                            {el?.title}
                         </h2>
-                        <input type="text"  onChange={(e)=>{}} className={`p-2 w-40 sm:w-72 bg-[#ff000000] border-b-[1px] border-[${colors?.border}] rounded-xl text-[${colors?.color}] `} style={{borderColor:colors.border,color:colors.color}} />
+                        <input type="text"  onChange={(e)=>{addLang(e.target.value,index)}} className={`p-2 w-40 sm:w-72 bg-[#ff000000] border-b-[1px] border-[${colors?.border}] rounded-xl text-[${colors?.color}] `} style={{borderColor:colors.border,color:colors.color}} />
 
                     </div>)
                 }
             </div> }
             { !lng && <div className='gap-5 grid lg:grid-cols-2 xl:grid-cols-4 p-5 justify-center'>
                 {
-                    headarArray?.map((el)=><div key={el.id}>
-                        <input type="text" value={el.title} onChange={(e)=>{changeTitle(e.target.value,el.id)}} className={`p-2 w-40 sm:w-72 bg-[#ff000000] border-b-[1px] border-[${colors?.border}] rounded-xl text-[${colors?.color}] `} style={{borderColor:colors.border,color:colors.color}} />
+                    Header?.map((el)=><div key={el.id}>
+                        <input type="text" value={el?.title} onChange={(e)=>{changeTitle(e.target.value,el.id)}} className={`p-2 w-40 sm:w-72 bg-[#ff000000] border-b-[1px] border-[${colors?.border}] rounded-xl text-[${colors?.color}] `} style={{borderColor:colors.border,color:colors.color}} />
                     </div>)
                 }
             </div>}

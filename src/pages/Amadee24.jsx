@@ -15,7 +15,8 @@ const Amadee24 = () => {
   document.title = "Amadee24 | Armenian Nasa ";
 
   const { Amade } = useSelector((state) => state.Amade);
-  const [langText, setLangText] = useState([]);
+  const [langText, setLangText] = useState(JSON.parse(localStorage.getItem('languageData4'))||[]);
+
   const [editLang, setEditLang] = useState("");
   const { auth } = useAuth()
   const [img, setImg] = useState("");
@@ -33,7 +34,8 @@ const Amadee24 = () => {
     "https://img1.wsimg.com/isteam/ip/84ef5e22-d42d-488e-a41a-026dcc3db38f/1.png/:/rs=w:1160,h:459",
   ];
   const [largeImg, setLargeImg] = useState(-1);
-
+  const [loading,setLoading] = useState(false)
+  const [succes,setSucces]= useState('')
 
   useEffect(() => {
     if (img && edit) {
@@ -73,7 +75,7 @@ const Amadee24 = () => {
       picture: img,
       language,
     };
-    await dispatch(AddAmade(obj));
+    await dispatch(AddAmade(obj,setLoading,setSucces));
     setAddShow(false);
     setAdd({
       title: "",
@@ -126,7 +128,7 @@ const Amadee24 = () => {
       newText[index][e.name] = e.value;
       setLangText(newText);
     }
-    localStorage.setItem('languageData',JSON.stringify([langText,"Amade"]))
+    localStorage.setItem('languageData4',JSON.stringify(langText))
 
   }
   console.log(langText);
@@ -194,7 +196,7 @@ const Amadee24 = () => {
                               addlangText(e.target, index);
                             }}
                           />
-                          {
+                          {/* {
                             <div className="  mt-5 flex gap-5 text-white ">
                               <CheckOutlined
                                 onClick={() => { }}
@@ -207,7 +209,7 @@ const Amadee24 = () => {
                               // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                               />
                             </div>
-                          }
+                          } */}
                         </div>
                       </div>
                     )}

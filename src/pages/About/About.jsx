@@ -18,12 +18,16 @@ const About = () => {
   const [edit, setEdit] = useState("");
   const [addShow, setAddShow] = useState(false);
   const [add, setAdd] = useState({});
-  const [langText, setLangText] = useState([]);
+const [succes,setSucces]= useState('')
+  
+  const [langText, setLangText] = useState(JSON.parse(localStorage.getItem('languageData2'))||[]);
+
   const [editLang, setEditLang] = useState("");
   const [img, setImg] = useState("");
 
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
 
+  const [loading,setLoading]= useState(false)
 
   useEffect(() => {
     dispatch(getFetchAbout());
@@ -57,7 +61,7 @@ let language = JSON.parse(item)
       picture: img,
       language,
     };
-    await dispatch(AddAbout(obj));
+    await dispatch(AddAbout(obj,setLoading,setSucces));
     setAdd({
       title: "",
       text: "",
@@ -109,7 +113,7 @@ let language = JSON.parse(item)
       newText[index][e.name] = e.value;
       setLangText(newText);
     }
-    localStorage.setItem('languageData',JSON.stringify([langText,"About"]))
+    localStorage.setItem('languageData2',JSON.stringify(langText))
 
   }
   console.log(langText);
@@ -182,7 +186,7 @@ let language = JSON.parse(item)
                             addlangText(e.target, index);
                           }}
                         />
-                        {
+                        {/* {
                           <div className=" mt-5 flex gap-5 text-white ">
                             <CheckOutlined
                               onClick={() => { }}
@@ -197,7 +201,7 @@ let language = JSON.parse(item)
                             // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                             />
                           </div>
-                        }
+                        } */}
                       </div>
                     </div>
                   )}

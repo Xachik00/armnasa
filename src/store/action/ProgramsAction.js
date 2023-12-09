@@ -46,11 +46,17 @@ export function deletePrograms(id) {
 }
 
 
-export function AddPrograms(obj) {
+    export function AddPrograms(obj,setLoading, setSucces ) {
 return async()=>{
   try {
+    setLoading(true)
     await axios.post(`${URL}programs`, obj);
+    setLoading(false)
+    setSucces('ok')
+
   } catch (error) {
+    setSucces(error)
+
     console.error(error)
   }
 }
