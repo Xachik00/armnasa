@@ -23,10 +23,11 @@ export const getFetchAmade = () => {
     }
 }
 export const DeleteAmade = (id) => {
-    return async () => {
+    return async (dispatch) => {
         try {
 
-            await axios.delete(URL+`amade/getAll${id}`);
+            await axios.delete(URL+`amade/${id}`);
+            await dispatch(getFetchAmade())
         }
         catch (error) {
 
@@ -37,7 +38,7 @@ export const DeleteAmade = (id) => {
 export const EditAmade = (obj) => {
     return async () => {
         try {
-            await axios.put(URL + `amade/getAll${obj?.id}`,obj);
+            await axios.put(URL + `amade/${obj?.id}`,obj);
         }
         catch (error) {
             console?.error(error)
@@ -46,8 +47,9 @@ export const EditAmade = (obj) => {
 }
 export const AddAmade = (obj) => {
     return async () => {
+        console.log(obj);
         try {
-            await axios.post(URL + `amade/getAll`,obj);
+            await axios.post(URL + `amade`,obj);
         }
         catch (error) {
             console?.error(error)

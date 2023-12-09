@@ -23,25 +23,8 @@ export const getFetchHome = () => {
     }
 }
 
-export async function uploadImageHandleradd(e,setImg) {
 
-    const formData = new FormData();
-    
-    formData.append("image", e.target.files[0]);
-    if (formData.has("image")) {
-      try {
-        const response = await axios.post(`${URL}upload`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
 
-        setImg(response?.data?.dirname) ;
-      } catch (error) {
-        return "Server request is failed";
-      }
-    }
-  }
 
 
   
@@ -61,8 +44,8 @@ export async function uploadImageHandleradd(e,setImg) {
       }
     });
   }
-  export  async function EditHome(obj) {
-    
+  export function EditHome(obj) {
+    return async()=>{
     try {
         console.log(obj);
       await axios.put(`${URL}agency/${obj?.id}`,obj);
@@ -70,12 +53,25 @@ export async function uploadImageHandleradd(e,setImg) {
         console.error(error )
     }
   }
+  }
 
-  export  async function deleteHome(id) {
-    
+  export function deleteHome(id) {
+    return async()=>{
     try {
       await axios.delete(`${URL}agency/${id}`);
     } catch (error) {
         console.error(error)
     }
   }
+  }
+  export const AddHome = (obj) => {
+    return async () => {
+        console.log(obj);
+        try {
+            await axios.post(URL + `agency`,obj);
+        }
+        catch (error) {
+            console?.error(error)
+        }
+    }
+}

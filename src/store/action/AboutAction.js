@@ -23,8 +23,8 @@ export const getFetchAbout = () => {
   }
 }
 
-export async function EditAbout(obj) {
-
+export function EditAbout(obj) {
+  return async()=>{
   try {
     console.log(obj);
     await axios.put(`${URL}about/${obj?.id}`, obj);
@@ -32,23 +32,28 @@ export async function EditAbout(obj) {
     console.error(error)
   }
 }
+}
 
-export async function deleteAbout(id) {
-
+export function deleteAbout(id) {
+  return async(dispatch)=>{
   try {
     await axios.delete(`${URL}about/${id}`);
+    await dispatch(getFetchAbout())
   } catch (error) {
     console.error(error)
   }
 }
+}
 
 
 
-export async function AddAbout(obj) {
-
+export  function AddAbout(obj) {
+return async()=>{
+  console.log(obj);
   try {
     await axios.post(`${URL}about`, obj);
   } catch (error) {
     console.error(error)
   }
+}
 }

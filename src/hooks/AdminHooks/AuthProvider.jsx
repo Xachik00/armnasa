@@ -5,8 +5,8 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
 
-    useEffect(()=>{ if(localStorage.getItem('response')){
-        const res=localStorage.getItem('response');
+    useEffect(()=>{ if(localStorage.getItem('auth')){
+        const res=localStorage.getItem('auth');
         const response=JSON.parse(res)
         setAuth(response)
     }},[])

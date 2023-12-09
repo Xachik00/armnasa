@@ -1,39 +1,61 @@
-import React, { useState } from 'react'
-import AdminDashboard from '../components/Admin/AdminDashboard'
-import Home from './Home'
-import About from './About/About'
-import Programs from './Programs'
-import Amadee24 from './Amadee24'
-import ContactUs from './Contact/ContactUs'
-import { useEffect } from 'react'
-import { AddLanguagePage } from '../components/AddLanguagePage/AddLanguagePage'
 
+import React, { useState } from "react";
+import AdminDashboard from "../components/Admin/AdminDashboard";
+import Home from "./Home";
+import About from "./About/About";
+import Programs from "./Programs";
+import Amadee24 from "./Amadee24";
+import ContactUs from "./Contact/ContactUs";
+import { useEffect } from "react";
+import { AddLanguagePage } from "../components/AddLanguagePage/AddLanguagePage";
+import BackraundChange from '../components/Admin/BackraundChange'
+import HeaderChange from '../components/Admin/HeaderChange'
 const Admin = () => {
-    const [page,setPage]=useState('')
-    useEffect(()=>{
-        if(page==="Language"){
-            localStorage.setItem('addLang',JSON.stringify(page))
-        }
-    },[page])
-    return (
-        
-        <div className=' w-full flex justify-center' style={{ background: `url('/Images/gif3.gif')` }}>
-            <div className=' flex w-[1600px]  '>
-                <AdminDashboard page={page} setPage={setPage}/>
-                <div className=' w-[1300px]'>
-                    {page==="Home"&&<Home/>}
-                    {page==="About"&&<About/>}
-                    {page==="Programs"&&<Programs/>}
-                    {page==="Amadee-24"&&<Amadee24/>}
-                    {page==="Contact"&&<ContactUs/>}
-                    {page==="Header"&&<div>Header</div>}
-                    {page==="Footer"&&<div>Footer</div>}
-                    {page==="Backraund"&&<div>Backraund</div>}
-                    {page==="Language"&& <AddLanguagePage/> }
-                </div>
-            </div>
-        </div>
-    )
-}
+  document.title = "Admin | Armenian Nasa ";
 
-export default Admin
+
+
+  const [page, setPage] = useState("Home");
+  useEffect(() => {
+    if (page === "Language") {
+      localStorage.setItem("addLang", JSON.stringify(page));
+    } else {
+      localStorage.removeItem('addLang')
+    }
+  }, [page]);
+
+
+
+
+  return (
+
+    <div className=' w-full flex justify-center min-h-[100vh]' style={{ backgroundImage: `url('/Images/gif3.gif')` }}>
+      <div className=' flex w-full justify-between  '>
+        {/* <div className=" w-[300px] bg-red-400"> */}
+        <AdminDashboard page={page} setPage={setPage} />
+
+        {/* </div> */}
+        <div className=' w-[100%]  mx-auto  bg-white min-h-[100vh]'>
+          <div>
+            <h2 className=" flex justify-center text-[40px] text-[blue]">{page}</h2>
+          </div>
+          <div>
+            {page === "Home" && <Home />}
+            {page === "About" && <About />}
+            {page === "Programs" && <Programs />}
+            {page === "Amadee-24" && <Amadee24 />}
+            {page === "Contact" && <ContactUs />}
+            {page === "Header" && <HeaderChange />}
+            {page === "Footer" && <div>Footer</div>}
+            {page === "Backraund" && <BackraundChange />}
+            {page === "Language" && <AddLanguagePage />}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  );
+};
+
+export default Admin;

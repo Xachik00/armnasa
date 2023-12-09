@@ -4,17 +4,18 @@ const ContactUs = () => {
   document.title = 'Contact | Armenian Nasa'
 
   return (
-    <div className="w-full min-h-[80vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
-      <div className=' w-[1600px]'>
+    <div className="w-full min-h-[100vh] flex justify-center items-center " style={{ backgroundImage: `url('/Images/gif5.gif')` }}>
+      <div className='max-w-[1600px]'>
 
         <div className=" text-gray-100 px-2 py-12"  >
           <div
-            className="max-w-screen-xl mt-10 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
+            className="  p-2  xl:px-28 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
             <div className=" w-full col-span-2 ">
 
               <img className="  mx-auto" src="./Images/logo.webp" alt="" />
             </div>
-            <div className="flex flex-col justify-between">
+            <div className='flex w-[100%] justify-center  flex-wrap lg:justify-between '>
+            <div className="flex flex-col justify-between max-w-[500px] ">
               <div>
 
                 <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-blue-500">   Armenian AeroSpace Agency</h2>
@@ -522,7 +523,7 @@ const ContactUs = () => {
                 </svg>
               </div>
             </div>
-            <div className="">
+            <div className="flex flex-col lg:max-w-[900px] sm:w-[500px] ">
               <div>
                 <span className="uppercase text-sm text-gray-600 font-bold">Full Name</span>
                 <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
@@ -545,6 +546,8 @@ const ContactUs = () => {
                 </button>
               </div>
             </div>
+            </div>
+
           </div>
         </div>
       </div>
