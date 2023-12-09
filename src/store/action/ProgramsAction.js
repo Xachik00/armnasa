@@ -4,14 +4,15 @@ import { fetchErrorPrograms, fetchPrograms, fetchingPrograms } from "../slice/Pr
 
 
 const URL = process.env.REACT_APP_BASE_URL
-
+let item = localStorage.getItem("language");
+let language = JSON.parse(item)
 
 export const getFetchPrograms = () => {
   return async (dispatch) => {
     try {
 
       dispatch(fetchingPrograms());
-      const response = await axios.get(URL + 'programs/getAll');
+      const response = await axios.get(URL + `programs/getAll/${language}`);
 
       dispatch(fetchPrograms(response?.data));
     }

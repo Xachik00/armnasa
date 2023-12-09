@@ -74,7 +74,6 @@ const ContactUs = () => {
             <div className='flex w-[100%] justify-center flex-col  md:flex-row md:justify-between '>
               <div className="flex flex-col justify-between max-w-[500px] ">
                 <div>
-
                   <h2 className="text-4xl lg:text-5xl font- bold leading-tight text-blue-500">   Armenian AeroSpace Agency</h2>
                   <p className=' text-2xl mt-2'>Better yet, see us in person!</p>
                   <div className="text-gray-700 mt-8 flex flex-col">

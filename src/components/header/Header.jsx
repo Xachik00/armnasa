@@ -87,10 +87,10 @@ const Header = () => {
           <a href="/contact" className={`${window?.location?.pathname === '/contact' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>CONTACT</a>
         </div>
 
-            {/* <ReactFlagsSelect countries={countries}
+            <ReactFlagsSelect countries={countries}
               customLabels={countriesValue} selected={languages} onSelect={(countryCode) => changeLanguage(countryCode)}
 
-            /> */}
+            />
           </div>
         <div className=' sm:hidden'>
           <MenuOutlined className=' text-white text-[30px]' />
