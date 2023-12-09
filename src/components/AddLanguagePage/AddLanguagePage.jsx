@@ -5,7 +5,12 @@ import About from '../../pages/About/About'
 import Programs from '../../pages/Programs'
 import Amadee24 from '../../pages/Amadee24'
 import ReactFlagsSelect from 'react-flags-select'
-import Header from '../header/Header'
+import HeaderChange from '../Admin/HeaderChange'
+import { AddAbout } from '../../store/action/AboutAction'
+import { AddAmade } from '../../store/action/AmadeAction'
+import { AddPrograms } from '../../store/action/ProgramsAction'
+import { AddHome } from '../../store/action/HomeAction'
+import { useDispatch } from 'react-redux'
 
 export const AddLanguagePage = () => {
 
@@ -14,6 +19,7 @@ export const AddLanguagePage = () => {
     const [countries, setCountries] = useState([]);
     const [countriesValue, setCountriesValue] = useState('');
     const [languages, setLanguages] = useState("US"); // Use useState hook
+    const dispatch = useDispatch();
 
     useEffect(() => {
       // Fetch country data
@@ -42,8 +48,28 @@ export const AddLanguagePage = () => {
   function changeLanguage(e) {
     setLanguages(e);
     localStorage.setItem('selectLang',JSON.stringify(e))
-   
+   }
+  function getData(){
+   const data = localStorage.getItem('languageData')
+   const langData = JSON.parse(data)
+   if(langData[1]==='Home'){
+     dispatch(AddHome(langData[0]));
+     localStorage.removeItem("languageData")
+    }
+    if(langData[1]==='About'){
+      dispatch(AddAbout(langData[0]));
+     localStorage.removeItem("languageData")
 
+     }
+     if(langData[1]==='Programs'){
+      dispatch(AddPrograms(langData[0]));
+      localStorage.removeItem("languageData")
+    }
+     if(langData[1]==='Amade'){
+      dispatch(AddAmade(langData[0]));
+      localStorage.removeItem("languageData")
+    }
+    setStep(step+1)
   }
   return (
     <div className=' flex flex-col items-center'>
@@ -59,10 +85,10 @@ export const AddLanguagePage = () => {
        {mypage[step]==="About"&&<About/>}
        {mypage[step]==="Programs"&&<Programs/>}
        {mypage[step]==="Amadee-24"&&<Amadee24/>}
-       {mypage[step]==="Header"&&<Header />}
+       {mypage[step]==="Header"&&<HeaderChange />}
        <div className=' flex justify-between w-[300px] my-5 text-white'>
        {step>0&& <button className='p-2 w-[100px] rounded-[20px] bg-slate-600' onClick={()=>setStep(step-1)}>Prev</button>}
-       {step!=4&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>setStep(step+1)}>next</button>}
+       {step!=4&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>getData()}>next</button>}
       {step==4&& <button className='p-2 w-[100px] rounded-[20px]  bg-slate-600' onClick={()=>{}}>Save</button>}
       </div>
     </div>

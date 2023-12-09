@@ -1,6 +1,5 @@
 import { fetchHome, fetchErrorHome, fetchingHome } from "../slice/HomeSlice";
 import Swal from "sweetalert2";
-import "@sweetalert2/theme-borderless/borderless.css";
 import axios from "axios";
 
 
@@ -45,8 +44,8 @@ export const getFetchHome = () => {
       }
     });
   }
-  export  async function EditHome(obj) {
-    
+  export function EditHome(obj) {
+    return async()=>{
     try {
         console.log(obj);
       await axios.put(`${URL}agency/${obj?.id}`,obj);
@@ -54,12 +53,25 @@ export const getFetchHome = () => {
         console.error(error )
     }
   }
+  }
 
-  export  async function deleteHome(id) {
-    
+  export function deleteHome(id) {
+    return async()=>{
     try {
       await axios.delete(`${URL}agency/${id}`);
     } catch (error) {
         console.error(error)
     }
   }
+  }
+  export const AddHome = (obj) => {
+    return async () => {
+        console.log(obj);
+        try {
+            await axios.post(URL + `agency`,obj);
+        }
+        catch (error) {
+            console?.error(error)
+        }
+    }
+}

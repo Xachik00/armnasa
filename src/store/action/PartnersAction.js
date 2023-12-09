@@ -32,32 +32,3 @@ export function AddPartner(obj) {
   }
   
 }
-export async function EditAbout(obj) {
-
-  try {
-    console.log(obj);
-    await axios.put(`${URL}about/${obj?.id}`, obj);
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export async function deleteAbout(id) {
-
-  try {
-    await axios.delete(`${URL}about/${id}`);
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-
-
-export async function AddAbout(obj) {
-
-  try {
-    await axios.post(`${URL}about`, obj);
-  } catch (error) {
-    console.error(error)
-  }
-}

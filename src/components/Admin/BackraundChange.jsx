@@ -62,11 +62,11 @@ const BackraundChange = () => {
 
     return (
         <div >
-            <div className=' grid grid-cols-3'>
+            <div className='md:grid-cols-2 xl:grid grid-cols-3'>
                 {
                     background?.map((el) => <div key={el.id} onClick={() => { setId(el.id) }} className=' p-3 flex flex-col items-center text-center justify-between'>
                         <h2>{el.pageName}</h2>
-                        <img src={el.background} className=' max-w-[450px] max-h-[200px]' alt="" />
+                        <img src={el.background} className=' sm:max-w-[450px] sm:max-h-[200px]' alt="" />
                         <div className=' w-[200px] flex justify-center mt-2  ' >
                             <Upload name={'Upload Backround '} setImg={setImg} id={el.id} />
                         </div>
@@ -79,7 +79,7 @@ const BackraundChange = () => {
             </div>
 
             <h2 className=' mt-10 flex justify-center text-[40px]'>Colors</h2>
-            <div className=' grid grid-cols-3 items-center justify-center [&>*]:flex   [&>*]:justify-center   mt-4'>
+            <div className=' grid sm:grid-cols-3 items-center justify-center [&>*]:flex   [&>*]:justify-center   mt-4'>
                 <div>
                     <span>Background Color</span>
                     <input  type="color" value={colors.backroundBG} name="" id="" onChange={(e) => { setColors({ ...colors, backroundBG: e.target.value }); console.log(e.target.value); }} />

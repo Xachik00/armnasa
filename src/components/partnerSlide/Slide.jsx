@@ -6,16 +6,9 @@ import { AddPartner, getFetchPartners } from '../../store/action/PartnersAction'
 import { useEffect } from 'react';
 import { CheckOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import { uploadImageHandleradd } from '../../store/action/UploadImage';
+import {Upload } from '../Admin/Upload'
+import useAuth from '../../hooks/AdminHooks/useAuth';
 const Slide = () => {
-    // const images = [
-    //     "./Images/partner1.webp",
-    //     "./Images/partner2.webp",
-    //     "./Images/partner3.webp",
-    //     "./Images/partner4.webp",
-    //     "./Images/partner5.webp",
-    //     "./Images/partner6.webp",
-    //     "./Images/partner7.webp",
-    // ];
     
   const { Partners } = useSelector((state) => state.Partners);
   const dispatch = useDispatch();
@@ -25,6 +18,7 @@ const [add, setAdd] = useState({
 
   title: "",
 });
+const {auth}=useAuth()
 
 useEffect(() => {
  
@@ -74,8 +68,8 @@ useEffect(() => {
         </div> 
       </div> 
     </div> 
-  {  <PlusOutlined
-                className=" flex justify-center items-center hover:scale-150 cursor-pointer transition ease-out duration-700"
+  { auth?.role==="admin"&& <PlusOutlined
+                className=" flex justify-center items-center  cursor-pointer transition ease-out duration-700"
                 onClick={() => setAddShow(true)}
               />}
               
@@ -95,16 +89,7 @@ useEffect(() => {
               )}
             </label>
 
-            <input
-              className="hidden"
-              type="file"
-              name="EditLogo"
-              id="EditLogo"
-              onChange={(e) => {
-                uploadImageHandleradd(e, setImg);
-              }}
-              accept="image/*"
-            />
+            <Upload name={'EditLogo'} setImg={setImg}  />
             <textarea
               name="title"
               className=" text-[20px] sm:text-[18px] w-[60%] m-5 resize-none"

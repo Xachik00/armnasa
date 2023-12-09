@@ -11,36 +11,50 @@ import { AddLanguagePage } from "../components/AddLanguagePage/AddLanguagePage";
 import BackraundChange from '../components/Admin/BackraundChange'
 import HeaderChange from '../components/Admin/HeaderChange'
 const Admin = () => {
+  document.title = "Admin | Armenian Nasa ";
+
+
+
   const [page, setPage] = useState("Home");
   useEffect(() => {
     if (page === "Language") {
       localStorage.setItem("addLang", JSON.stringify(page));
+    } else {
+      localStorage.removeItem('addLang')
     }
   }, [page]);
 
 
 
 
-    return (
-        
-        <div className=' w-full flex justify-center' style={{ backgroundImage: `url('/Images/gif3.gif')` }}>
-            <div className=' flex w-[1600px] justify-between '>
-                <AdminDashboard page={page} setPage={setPage}/>
-                <div className=' max-w-[1000px] min-h-[80vh] mx-auto mr-[0px] '>
-                    {page==="Home"&&<Home/>}
-                    {page==="About"&&<About/>}
-                    {page==="Programs"&&<Programs/>}
-                    {page==="Amadee-24"&&<Amadee24/>}
-                    {page==="Contact"&&<ContactUs/>}
-                    {page==="Header"&&<HeaderChange/>}
-                    {page==="Footer"&&<div>Footer</div>}
-                    {page==="Backraund"&&<BackraundChange />}
-                    {page==="Language"&& <AddLanguagePage/> }
-                </div>
-            </div>
+  return (
 
+    <div className=' w-full flex justify-center min-h-[100vh]' style={{ backgroundImage: `url('/Images/gif3.gif')` }}>
+      <div className=' flex w-full justify-between  '>
+        {/* <div className=" w-[300px] bg-red-400"> */}
+        <AdminDashboard page={page} setPage={setPage} />
+
+        {/* </div> */}
+        <div className=' w-[100%]  mx-auto  bg-white min-h-[100vh]'>
+          <div>
+            <h2 className=" flex justify-center text-[40px] text-[blue]">{page}</h2>
+          </div>
+          <div>
+            {page === "Home" && <Home />}
+            {page === "About" && <About />}
+            {page === "Programs" && <Programs />}
+            {page === "Amadee-24" && <Amadee24 />}
+            {page === "Contact" && <ContactUs />}
+            {page === "Header" && <HeaderChange />}
+            {page === "Footer" && <div>Footer</div>}
+            {page === "Backraund" && <BackraundChange />}
+            {page === "Language" && <AddLanguagePage />}
+          </div>
         </div>
-   
+      </div>
+
+    </div>
+
   );
 };
 

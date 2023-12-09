@@ -23,8 +23,8 @@ export const getFetchPrograms = () => {
   }
 }
 
-export async function EditPrograms(obj) {
-
+export function EditPrograms(obj) {
+  return async()=>{
   try {
     console.log(obj);
     await axios.put(`${URL}programs/${obj?.id}`, obj);
@@ -32,13 +32,16 @@ export async function EditPrograms(obj) {
     console.error(error)
   }
 }
-export async function deletePrograms(id) {
-
+}
+export function deletePrograms(id) {
+  return async(dispatch)=>{
   try {
     await axios.delete(`${URL}programs/${id}`);
+    dispatch(getFetchPrograms())
   } catch (error) {
     console.error(error)
   }
+}
 }
 
 

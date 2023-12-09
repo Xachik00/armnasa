@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { DeleteItem, EditHome, deleteHome, getFetchHome } from "../store/action/HomeAction";
 import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { uploadImageHandleradd } from "../store/action/UploadImage";
+import { Upload } from "../components/Admin/Upload";
+import useAuth from "../hooks/AdminHooks/useAuth";
 
 const Home = () => {
     
@@ -12,14 +14,15 @@ const Home = () => {
   const [img, setImg] = useState('');
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
   const [addShow, setAddShow] = useState(false);
-  const [langText,setLangText] =useState({info:[],tableName:"agency"})
-
+  const [langText, setLangText] = useState([]);
+  const [editLang, setEditLang] = useState("");
+const {auth}=useAuth()
   const [add, setAdd] = useState({ 
     text: "",
     title: "",
   })
   useEffect(() => {
-    if(img){
+    if(img && edit){
     setEdit({ ...edit, picture: img });
     }
   }, [img]);
@@ -29,7 +32,7 @@ const Home = () => {
   }, [dispatch]);
 
   async function   editHome() {
-   await  EditHome(edit)
+   await  dispatch(EditHome(edit))
 
     dispatch(getFetchHome());
     setEdit('')
@@ -38,7 +41,7 @@ const Home = () => {
   await   DeleteItem({
       title: "Ցանկանում եք ջնջել՞",
       text: "Ջնջելու դեպքում վերականգնել չեք կարող",
-      deleteItem: () => deleteHome(id),
+      deleteItem: () => dispatch(deleteHome(id)),
     });
     dispatch(getFetchHome());
 
@@ -60,41 +63,42 @@ const Home = () => {
 
   function handleLanguageChange1() {
     let language = localStorage.getItem("selectLang");
-    let item = JSON.parse(language)
-    setLangText({...langText,language:item});
-    
-    
+    let item = JSON.parse(language);
+    setEditLang(item)
   }
-  async function getItemCount(){
-    let arr=[...langText.info]
-    for(let i=0;i<Home.length;i++){
-      arr.push({ title:"",
-      text:"",})
-    
+  async function getItemCount() {
+    let arr = [...langText];
+    let language = localStorage.getItem("selectLang");
+    let item = JSON.parse(language);
+    for (let i = 0; i < Home.length; i++) {
+      arr.push({
+        picture:Home[i].picture,
+        language: editLang ,
+        title: "",
+        text: "",
+      });
     }
-    setLangText({...langText,info:arr})
+    setLangText(arr);
   }
-async function addlangText(e,index){
-
-  if(!langText.info.length){
-   await getItemCount()
+  async function addlangText(e, index) {
+    if (!langText.length) {
+      await getItemCount();
+    }
+    if (langText.length === Home.length) {
+      let newText = [...langText ];
+      newText[index][e.name] = e.value;
+      setLangText(newText);
+    }
+    localStorage.setItem('languageData',JSON.stringify([langText,"Home"]))
   }
-  if (langText.info.length===Home.length) {
-    let newText = { ...langText };
-     newText.info[index][e.name] = e.value;
-    setLangText(newText);
+ 
 
-  }
-
-}
-
-console.log(Home);
   return (
     <div
       className={
         lng
           ? "w-[70%] p-2  text-white"
-          : "  w-full min-h-[90vh] sm:min-h-[90vh] flex justify-center items-center"
+          : "  w-full min-h-[90vh] sm:min-h-[100vh] flex justify-center items-center"
       }
       style={{ background: `url(${Home[0]?.picture})` }}
     >
@@ -113,33 +117,18 @@ console.log(Home);
                 <p className=" text-[20px] sm:text-[30px]  text-white">
                   {Home[0]?.text}
                 </p>
-                {!lng && (
+                {!lng && auth?.role==="admin"&& (
                   <div className="w-[100px] flex justify-between mt-4">
-                    <EditOutlined onClick={() => setEdit(el)} />
-                    <DeleteOutlined onClick={() => deleteItem(el.id)} />
+                    <EditOutlined className=" text-[25px] hover:bg-blue-500 p-2 rounded-xl text-white hover:scale-125 " onClick={() => setEdit(el)} />
+                    
+                    {/* <DeleteOutlined onClick={() => deleteItem(el.id)} /> */}
                   </div>
                 )}
               </div>
             );
           })}
         {edit && (
-          <div className="flex flex-col justify-center items-center w-[100%] mx-auto text-red-500">
-            {/* <img src={edit?.picture} alt="" className=" rounded-[12px]" /> */}
-            {edit?.picture && (
-              <label className="w-[40%] flex justify-center" htmlFor="EditLogo">
-                <img className="" src={img ? img : edit?.picture} alt="logo" />
-              </label>
-            )}
-            <input
-              className="hidden"
-              type="file"
-              name="EditLogo"
-              id="EditLogo"
-              onChange={(e) => {
-                uploadImageHandleradd(e, setImg);
-              }}
-              accept="image/*"
-            />
+          <div className="flex flex-col text-[25px] justify-center items-center w-[100%] mx-auto text-white">
             <textarea
               name="title"
               rows="2"
@@ -160,19 +149,19 @@ console.log(Home);
               }
             />
             {
-              <div>
-                <CheckOutlined
+              <div className=" mt-5 flex gap-5">
+                <CheckOutlined className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
                   onClick={() => {
                     editHome();
                   }}
                 />{" "}
-                <CloseOutlined onClick={() => setEdit("")} />
+                <CloseOutlined className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125" onClick={() => setEdit("")} />
               </div>
             }
           </div>
         )}
-        {lng && (
-          <div className="container">
+        {lng && auth?.role==="admin"&&(
+          <div className="container text-[25px]">
             <h1 className="text-white text-lg text-center mt-4">
               Add Translate Data
             </h1>
@@ -182,7 +171,7 @@ console.log(Home);
                 rows="2"
                 className="block p-2.5 my-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
                 type="text"
-                value={langText.info[0]?.title}
+                value={langText[0]?.title}
                 placeholder="Title"
                 onChange={(e) => {
                   addlangText(e.target, 0);
@@ -193,20 +182,24 @@ console.log(Home);
                 placeholder="Text"
                 rows="4"
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
-                value={langText.info[0]?.text}
+                value={langText[0]?.text}
                 onChange={(e) => {
                   addlangText(e.target, 0);
                 }}
               />
               {
-                <div className=" w-[30%] mt-4 flex justify-between text-white ">
+                <div className=" mt-5 flex gap-5 text-white ">
                   <CheckOutlined
                     onClick={() => {}}
-                    className="hover:scale-150 cursor-pointer transition ease-out duration-700"
+                    className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+
+                    // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                   />
                   <CloseOutlined
                     onClick={() => setAddShow(false)}
-                    className="hover:scale-150 cursor-pointer transition ease-out duration-700"
+                  className=" rounded-xl p-2 hover:bg-blue-500 hover:scale-125"
+
+                    // className="hover:scale-150 cursor-pointer transition ease-out duration-700"
                   />
                 </div>
               }
