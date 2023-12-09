@@ -7,10 +7,10 @@ const ContactUs = () => {
   document.title = 'Contact | Armenian Nasa'
   const [email, setEmail] = useState({
     fullName: "",
-    email: "",
+    mail: "",
     text: "",
   });
-  const [succes, setSucces] = useState("")
+  const [succes, setSucces] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -19,13 +19,12 @@ const ContactUs = () => {
     try {
       await dispatch(sendMail(email, setLoading, setSucces))
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
   useEffect(() => {
     if (succes === 'ok') {
       Swal.fire({
-
         position: "center",
         icon: "success",
         title: "OK",
@@ -49,16 +48,16 @@ const ContactUs = () => {
   }, [succes, loading, dispatch]);
 
   useEffect(() => {
-    if(loading){
+    if (loading) {
       Swal.fire({
         title: 'Loading...',
         showConfirmButton: false,
         allowOutsideClick: false,
       }).then(() => {
-        setLoading(false)
+        setLoading(false);
       })
     }
-    
+
   }, [loading,])
 
 
@@ -70,10 +69,9 @@ const ContactUs = () => {
           <div
             className="  p-2  xl:px-28 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
             <div className=" w-full col-span-2 ">
-
               <img className="  mx-auto" src="./Images/logo.webp" alt="" />
             </div>
-            <div className='flex w-[100%] justify-center  flex-wrap lg:justify-between '>
+            <div className='flex w-[100%] justify-center flex-col  md:flex-row md:justify-between '>
               <div className="flex flex-col justify-between max-w-[500px] ">
                 <div>
 
@@ -594,7 +592,7 @@ const ContactUs = () => {
                     <span className="uppercase text-sm text-gray-600 font-bold">Email</span>
                     <input className="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                       placeholder='Email'
-                      type="email" value={email?.email} onChange={(e) => setEmail({ ...email, email: e.target.value })} />
+                      type="email" value={email?.mail} onChange={(e) => setEmail({ ...email, mail: e.target.value })} />
                   </div>
                   <div className="mt-8">
                     <span className="uppercase text-sm text-gray-600 font-bold">Message</span>
@@ -606,7 +604,7 @@ const ContactUs = () => {
                   </div>
                   <div className="mt-8">
                     <button
-                    disabled={loading}
+                      disabled={loading}
                       type='submit'
                       onClick={(e) => sendMailMessage(e)}
                       className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
