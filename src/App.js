@@ -34,7 +34,7 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/admin" element={!auth?.accessToken ? <Login /> : < Admin />} />
       </Routes>
-{     auth?.role ==='admin'&& <MyChatComponent/>}
+{     auth?.role !=='admin'&& <MyChatComponent/>}
       {auth?.role ==='admin'?<></>:<Footer />}
     </div>
   );
