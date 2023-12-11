@@ -47,16 +47,22 @@ const ContactUs = () => {
       console.error(error);
     }
   }
+
   useEffect(() => {
-    if (succes === 'ok') {
+    if (succes === "ok") {
       Swal.fire({
         position: "center",
         icon: "success",
         title: "OK",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       }).then(() => {
-        setSucces("")
+        setSucces("");
+        setEmail({
+          fullName: "",
+          text: "",
+          mail: "",
+        });
       });
     }
     if (succes?.response?.status < 200 || succes?.response?.status >= 400) {
@@ -65,12 +71,13 @@ const ContactUs = () => {
         icon: "error",
         title: "ERROR!!!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       }).then(() => {
-        setSucces("")
+        setSucces("");
       });
     }
   }, [succes, loading, dispatch]);
+
 
   useEffect(() => {
     if (loading) {

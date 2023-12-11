@@ -136,7 +136,7 @@ let language = JSON.parse(item)
           }
         >
           <h1 className=" text-[35px] sm:text-[55px] text-blue-500 mt-5 felx text-center">
-            About AASA
+            {About[0].title}
           </h1>
 
           <div className=" grid grid-cols-2  justify-center  gap-10 sm:gap-[110px] p-5">

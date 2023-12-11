@@ -11,7 +11,7 @@ export const sendMail = (obj,setLoading,setSucces) => {
     return async () => {
         try {
             setLoading(true)
-             await axios.post(URL + `chat/addMessage`,obj);
+             await axios.post(URL + `chat/sendMail`,obj);
             setLoading(false);
             setSucces("ok");
 
