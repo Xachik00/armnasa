@@ -34,7 +34,7 @@ export const AddLanguagePage = ({setPage}) => {
   const [loading4,setLoading4]= useState(false)
   const [loading5,setLoading5]= useState(false)
   useEffect(()=>{
-    if(step === 0 ){
+    if(step === 0 && localStorage.getItem('languageData6')){
       localStorage.removeItem("languageData1")
       localStorage.removeItem("languageData2")
       localStorage.removeItem("languageData3")
@@ -42,12 +42,10 @@ export const AddLanguagePage = ({setPage}) => {
       localStorage.removeItem("languageData5")
       localStorage.removeItem("languageData6")
       localStorage.removeItem("selectLang")
-
-      
-
       setLanguages('US')
-
+      setPage('Home')
     }
+  
   },[step])
 
 
@@ -183,7 +181,6 @@ export const AddLanguagePage = ({setPage}) => {
 
     localStorage?.setItem("page",JSON?.stringify("Home"))
     setStep(0)
-    setPage('Home')
    
   }
   return (

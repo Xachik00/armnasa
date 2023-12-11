@@ -107,7 +107,7 @@ const AdminDashboard = ({ page, setPage }) => {
               {active === 'Setings' ? < UpOutlined /> : <DownOutlined />}
             </li>
             <ul className={`${active === 'Setings' ? " block" : "hidden"} pl-5 [&>li]:p-1 [&>li]:border-b-2  [&>li]:cursor-pointer`} >
-              <li className={`${page === 'Login,Password' ? "border-green-500 text-green-500" : " border-blue-500"}`}><LockOutlined onClick={(e) => { setPage("Login,Password") }} /></li>
+              {/* <li className={`${page === 'Login,Password' ? "border-green-500 text-green-500" : " border-blue-500"}`}><LockOutlined onClick={(e) => { setPage("Login,Password") }} /></li> */}
               <li className={`${page === 'Language' ? "border-green-500 text-green-500" : " border-blue-500"}`}><GlobalOutlined onClick={(e) => { setPage("Language") }} /></li>
             </ul>
           </ul>
@@ -117,7 +117,7 @@ const AdminDashboard = ({ page, setPage }) => {
             </li>
 
           </ul>
-          <ul>
+          {/* <ul>
             <li className=' flex justify-between items-center cursor-pointer p-2 bg-[#3b3b438b] border-b-2 border-blue-500' onClick={() => { active === 'Footer' ? setActive('') : setActive('Footer'); setPage('Footer') }}>
               <p className={` flex gap-2 items-center ${active === 'Footer' ? " text-green-500" : ""}`}><BorderBottomOutlined /></p>
             </li>
@@ -128,7 +128,7 @@ const AdminDashboard = ({ page, setPage }) => {
               <p className={` flex gap-2 items-center ${active === 'Backraund' ? " text-green-500" : ""}`}><BgColorsOutlined /></p>
             </li>
 
-          </ul>
+          </ul> */}
           <ul>
             <li className=' flex justify-between items-center cursor-pointer p-2  text-black' onClick={() => { localStorage.removeItem('auth');setAuth({})}}>
               <p className={` flex gap-2 items-center `}><img src='./Images/logoout.png' className=' w-8 ' /></p>

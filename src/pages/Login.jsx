@@ -71,14 +71,14 @@ const Login = () => {
     return (
 <div className=' w-full bg-slate-500 flex justify-center items-center' style={{backgroundImage:'url("./Images/gif1.gif")'}}>
 <section className='  w-[1600px] m-0 h-[699px] flex '>
-            <div style={{backgroundImage:'url("./Images/gif4.gif")'}} className=' bg-[length:1200px_700px]  bg-no-repeat w-[50%]  flex flex-col  justify-center pt-8'>
+            <div style={{backgroundImage:'url("./Images/gif4.gif")'}} className='hidden sm:bg-[length:1200px_700px]  bg-no-repeat w-[50%]  sm:flex flex-col  justify-center pt-8'>
                 {/* <div className=' w-24 h-24 bg-slate-700 rounded-[50%] flex items-center justify-start border-[1px] border-[#fff] mb-36'><img src='./Images/gerb.png' className=' w-[80%]' alt='' /></div> */}
-                <div className=' '>
+                <div className=''>
                     <img src='./Images/logo.webp' alt='' className=' w-[180px]' />
                     {/* <h2 className=' text-[35px] text-white'>Ազգային Ժողով</h2> */}
                 </div>
             </div>
-            <div className=' w-[70%] flex justify-center items-center ' >
+            <div className='w-full sm:w-[70%] flex justify-center items-center ' >
                 <div className=' w-[60%] h-80 bg-[#26384996] flex flex-col items-center p-2 text-white' >
                     <p ref={errRef} className={errMsg ? " mt-2 text-[16px] text-[#c0d2e3]" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1 className=' mt-10'>Մուտք</h1>
@@ -105,7 +105,7 @@ const Login = () => {
                             value={password}
                             required
                         />
-                        <div className="persistCheck w-full flex justify-end">
+                        <div className="persistCheck w-full flex items-center justify-end">
                             <input
                                 type="checkbox"
                                 id="persist"
@@ -113,7 +113,7 @@ const Login = () => {
                                 onChange={toggleCheck}
                                 checked={check}
                             />
-                            <label htmlFor="persist" className=' mt-4'>Հիշել</label>
+                            <label htmlFor="persist" className=' ml-4'>Հիշել</label>
                         </div>
                         <button className='button flex items-center mt-1 h-14 w-56 justify-center bg-[#263849] rounded-md text-white text-[19px] hover:bg-[#2638495b] hover:text-[22px]'
                         // onClick={()=>navigate('/admin')}

@@ -1,4 +1,4 @@
-import { MenuOutlined } from '@ant-design/icons';
+import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react'
 import ReactFlagsSelect from 'react-flags-select';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,8 @@ import useAuth from '../../hooks/AdminHooks/useAuth';
 import { getFetchHeader } from '../../store/action/HeaderAction';
 const Header = () => {
   const [languages, setLanguages] = useState("US"); 
-  const [scrollHeader, setScrollHeader] = useState(false)
+  const [scrollHeader, setScrollHeader] = useState(false);
+  const [active,setActive] = useState(false)
  
   let bb = window.location.pathname;
   window.onscroll = function () { myFunction() };
@@ -25,8 +26,7 @@ const Header = () => {
     dispatch(getFetchHeader())
   }, [dispatch]);
   
-  console.log(Header);
-console.log(Language);
+
 
   function myFunction() {
     if (window.pageYOffset > 0) {
@@ -64,14 +64,14 @@ console.log(Language);
   
 
   return (
-    <div className={` ${scrollHeader ? "fixed z-50 sm:h-[80px]" : ""} w-full p-3 sm:p-0  bg-black sm:h-[120px] flex justify-center items-center border-b-[.5px] border-blue-500`}>
+    <div className={` ${scrollHeader ? "fixed z-50 sm:h-[80px]" : ""} w-full p-3 sm:p-0 h-[80px] bg-black md:h-[120px] flex justify-center items-center border-b-[.5px] border-blue-500`}>
       <div className=' w-full sm:w-[1600px] bg-black sm:h-[50px] flex text-white justify-between items-center'>
         <div>
-          <a href='/'><img src="./Images/logo.webp" alt="" className={`${scrollHeader ? "w-[70px] sm:w-[110px]" : " w-[70px] sm:w-[160px]"}`} /></a>
+          <a href='/'><img src="./Images/logo.webp" alt="" className={`${scrollHeader ? "w-[70px] md:w-[110px]" : " w-[70px] md:w-[160px]"}`} /></a>
         </div>
         <div className="flex gap-5">
 
-          <div className=' text-[15px] sm:text-[18px] hidden sm:flex gap-6  [&>*:hover]:border-t-[1px]   [&>*]:border-b-[1px] [&>*]:ease-in [&>*]:duration-200 [&>*]:p-2  [&>*]:rounded-[12px]   '>
+          <div className=' text-[15px] sm:text-[18px] hidden md:flex gap-6  [&>*:hover]:border-t-[1px]   [&>*]:border-b-[1px] [&>*]:ease-in [&>*]:duration-200 [&>*]:p-2  [&>*]:rounded-[12px]   '>
             <a href="/" className={`${window?.location?.pathname === '/' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[0]?.title}</a>
             <a href="/about" className={`${window?.location?.pathname === '/about' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[1]?.title}</a>
             <a href="/programs" className={`${window?.location?.pathname === '/programs' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[2]?.title}</a>
@@ -85,10 +85,22 @@ console.log(Language);
           /> 
           </div>
         </div>
-        <div className=' sm:hidden'>
+        <div onClick={()=>{setActive(true)}} className=' md:hidden'>
           <MenuOutlined className=' text-white text-[30px]' />
         </div>
       </div>
+      {
+        active && <div className='md:hidden absolute mt-[960px] h-[100vh]  bg-[#17101099] w-[220px]  left-0'>
+     <div className='flex flex-col ml-4 gap-5 items-start p-3 text-white w-[90%] text-[18px]  [&>*:hover]:border-t-[1px]   [&>*]:border-b-[1px] [&>*]:ease-in [&>*]:duration-200 [&>*]:p-2  [&>*]:rounded-[12px]  '>
+            <CloseOutlined className='ml-[120px]' onClick={() => { setActive(false) }} />
+        <a href="/" className={`${window?.location?.pathname === '/' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[0]?.title}</a>
+        <a href="/about" className={`${window?.location?.pathname === '/about' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[1]?.title}</a>
+        <a href="/programs" className={`${window?.location?.pathname === '/programs' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[2]?.title}</a>
+        <a href="/amadee" className={`${window?.location?.pathname === '/amadee' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[3]?.title}</a>
+        <a href="/contact" className={`${window?.location?.pathname === '/contact' ? "border-green-500 hover:text-green-500" : "border-blue-500 hover:text-blue-500"}`}>{Header[4]?.title}</a>
+      </div>
+      </div>
+      }
     </div>
   )
 }

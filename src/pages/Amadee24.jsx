@@ -16,7 +16,8 @@ const Amadee24 = () => {
 
   const { Amade } = useSelector((state) => state.Amade);
   const [langText, setLangText] = useState(JSON.parse(localStorage.getItem('languageData4'))||[]);
-
+  const [succes,setSucces]= useState('')
+  const [loading,setLoading]= useState(false)
   const [editLang, setEditLang] = useState("");
   const { auth } = useAuth()
   const [img, setImg] = useState("");
@@ -34,9 +35,21 @@ const Amadee24 = () => {
     "https://img1.wsimg.com/isteam/ip/84ef5e22-d42d-488e-a41a-026dcc3db38f/1.png/:/rs=w:1160,h:459",
   ];
   const [largeImg, setLargeImg] = useState(-1);
-  const [loading,setLoading] = useState(false)
-  const [succes,setSucces]= useState('')
+  const [ImgContainer, setImgContainer] = useState([]);
 
+console.log(Amade);
+useEffect(()=>{
+  if(!ImgContainer.length){
+
+  
+      setImgContainer(prevImgContainer => [
+        ...prevImgContainer,
+        ...Amade.filter(el =>{  if(el.title === '' && el.text === ''){return el}})
+      ]);
+    }
+
+},[Amade])
+console.log(ImgContainer);
   useEffect(() => {
     if (img && edit) {
       setEdit({ ...edit, picture: img });
@@ -153,7 +166,7 @@ const Amadee24 = () => {
             <div className=" grid grid-cols-2  justify-center  gap-10 sm:gap-[110px] p-5">
               {!edit&&
                 Amade?.map((el, index) => (
-                  <div
+                  el.title !== '' && el.text !== '' && <div
                     key={el?.id}
                     className={`${index === 0 || index % 3 === 0
                       ? "col-span-2"
@@ -284,9 +297,9 @@ const Amadee24 = () => {
           </div>
 
           <div className=" grid grid-cols-3 items-center gap-8 mt-5 [&>*]:cursor-pointer [&>*]:scale-[.7] [&>*:hover]:scale-[.8] [&>*]:ease [&>*]:duration-500">
-            {Amade?.map((el, index) => (
+            {ImgContainer?.map((el, index) => (
               <div key={el?.id} onClick={() => setLargeImg(index)}>
-                <img src={el} alt="" className=" rounded-lg " />
+                <img src={el.picture} alt="" className=" rounded-lg " />
               </div>
             ))}
           </div>
@@ -354,7 +367,7 @@ const Amadee24 = () => {
         </div>
       )}
       {largeImg !== -1 && (
-        <LargeImg Img={largeImg} setLargeImg={setLargeImg} imgArr={imgArr} />
+        <LargeImg Img={largeImg} setLargeImg={setLargeImg} imgArr={ImgContainer} />
       )}
     </div>
   );

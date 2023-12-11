@@ -19,6 +19,7 @@ const About = () => {
   const [addShow, setAddShow] = useState(false);
   const [add, setAdd] = useState({});
 const [succes,setSucces]= useState('')
+const [loading,setLoading]= useState(false)
   
   const [langText, setLangText] = useState(JSON.parse(localStorage.getItem('languageData2'))||[]);
 
@@ -27,7 +28,6 @@ const [succes,setSucces]= useState('')
 
   const [lng, setLng] = useState(localStorage.getItem("addLang"));
 
-  const [loading,setLoading]= useState(false)
 
   useEffect(() => {
     dispatch(getFetchAbout());
